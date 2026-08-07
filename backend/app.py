@@ -137,5 +137,6 @@ def delete_todo(todo_id):
     return "", 204
 
 init_db()
+legiscan()
 if __name__ == "__main__":
     app.run(debug=True, port=5000)
