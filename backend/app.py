@@ -10,18 +10,53 @@ Server starts on http://localhost:5000
 import os
 from flask import Flask, jsonify, request
 from flask_cors import CORS
-import psycopg2
+import psycopg2 # lets you run SQL queries in postgres
 from psycopg2.extras import RealDictCursor
+import requests
 
 app = Flask(__name__)
+
 
 # In production, set FRONTEND_URL to your deployed frontend's origin
 # (e.g. https://your-domain.com) to restrict CORS to just that site.
 # Left unset, this allows any origin -- fine for local dev, not for prod.
-CORS(app, origins=os.environ.get("FRONTEND_URL", "*"))
+CORS(app, origins=os.environ.get("FRONTEND_URL", "*")) # ME: this is set in Render tool. So if Render runs the app, it will use that URL.
 
 DATABASE_URL = os.environ["DATABASE_URL"]  # fails loudly if not set
+BASE_URL= "https://api.legiscan.com/"
 
+def legiscan():
+    params = {
+        "key": API_KEY,
+        "op": "getMasterList",
+        "state": "CA"
+    }
+
+    # Execute the GET request
+    response = requests.get(BASE_URL, params=params)
+
+    if response.status_code == 200:
+        data = response.json()
+        
+        # Verify API status response
+        if data.get("status") == "OK":
+            # Extract the bill master list payload
+            master_list = data.get("masterlist", {})
+            
+            # Print a short summary of the first few bills
+            for index, (bill_id, bill_info) in enumerate(master_list.items()):
+                if index >= 5: # Limit output to 5 rows
+                    break
+                # Skip metadata session key if it exists
+                if bill_id == "session": 
+                    continue
+                    
+                print(f"Bill: {bill_info.get('number')} | Title: {bill_info.get('title')}")
+        else:
+            print("API Error:", data.get("message", "Unknown error"))
+    else:
+        print(f"HTTP Request failed with status code: {response.status_code}")
+    return
 
 def get_db():
     # RealDictCursor makes rows come back as dicts, like sqlite3.Row did
@@ -33,7 +68,7 @@ def init_db():
     conn.cursor().execute(
         """
         CREATE TABLE IF NOT EXISTS todos (
-            id SERIAL PRIMARY KEY,
+            id SERIAL PRIMARY KEY, 
             text TEXT NOT NULL,
             done BOOLEAN NOT NULL DEFAULT FALSE
         )
