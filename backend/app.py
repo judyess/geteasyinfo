@@ -12,7 +12,7 @@ from flask import Flask, jsonify, request
 from flask_cors import CORS
 import psycopg2 # lets you run SQL queries in postgres
 from psycopg2.extras import RealDictCursor
-import requests
+
 
 app = Flask(__name__)
 
@@ -23,40 +23,7 @@ app = Flask(__name__)
 CORS(app, origins=os.environ.get("FRONTEND_URL", "*")) # ME: this is set in Render tool. So if Render runs the app, it will use that URL.
 
 DATABASE_URL = os.environ["DATABASE_URL"]  # fails loudly if not set
-BASE_URL= "https://api.legiscan.com/"
 
-def legiscan():
-    params = {
-        "key": API_KEY,
-        "op": "getMasterList",
-        "state": "CA"
-    }
-
-    # Execute the GET request
-    response = requests.get(BASE_URL, params=params)
-
-    if response.status_code == 200:
-        data = response.json()
-        
-        # Verify API status response
-        if data.get("status") == "OK":
-            # Extract the bill master list payload
-            master_list = data.get("masterlist", {})
-            
-            # Print a short summary of the first few bills
-            for index, (bill_id, bill_info) in enumerate(master_list.items()):
-                if index >= 5: # Limit output to 5 rows
-                    break
-                # Skip metadata session key if it exists
-                if bill_id == "session": 
-                    continue
-                    
-                print(f"Bill: {bill_info.get('number')} | Title: {bill_info.get('title')}")
-        else:
-            print("API Error:", data.get("message", "Unknown error"))
-    else:
-        print(f"HTTP Request failed with status code: {response.status_code}")
-    return
 
 def get_db():
     # RealDictCursor makes rows come back as dicts, like sqlite3.Row did
@@ -137,6 +104,6 @@ def delete_todo(todo_id):
     return "", 204
 
 init_db()
-legiscan()
+
 if __name__ == "__main__":
     app.run(debug=True, port=5000)
