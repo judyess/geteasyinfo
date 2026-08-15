@@ -14,7 +14,7 @@ export default function Dropdown(){
 
     function testprint(){
         console.log("props bro")
-        console.log(stateData[0])
+        console.log(stateData)
     }
 
     function dropdown_states(){
