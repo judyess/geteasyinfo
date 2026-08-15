@@ -57,8 +57,6 @@ const states = {
 export default function Dropdown(){
     const [stateData, setStateData] = useState(states);
     const [choice, setChoice] = useState("");
-    const []
-
 
     function testprint(){
         console.log("props bro")
