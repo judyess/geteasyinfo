@@ -1,13 +1,16 @@
 import React, {useState, useEffect} from "react";
-function Prop(){
+export default function Prop(){
     const [serverData, setServerData] = useState([]);
 
     useEffect(() => {
-        print("{Prop props loaded")
+        print("Prop props loaded")
     }, []);
 
-  function reset(){
+    function reset(){
         setServerData([]);
+    }
+    function testprint(){
+        console.log("props bro")
     }
 
     async function fetchDatabase() {
@@ -18,7 +21,7 @@ function Prop(){
     
     return(
         <div className="app">
-            <button type="submit" onClick={}>submit</button>
+            <button type="submit" onClick={testprint}>submit</button>
         </div>
     )
 }

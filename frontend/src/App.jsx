@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-
+import Prop from "./Prop"
 // In local dev this is empty, so fetch("/api/...") stays relative and
 // Vite's proxy (vite.config.js) forwards it to the Flask dev server.
 // In production, set VITE_API_URL to your deployed backend's URL
@@ -58,7 +58,7 @@ export default function App() {
   return (
     <div className="app">
       <h1>Todo List</h1>
-
+      <Prop />
       <form onSubmit={addTodo} className="add-form">
         <button onClick={pressButton}>Console Message</button>
         <input
