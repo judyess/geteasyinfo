@@ -21,9 +21,7 @@ export default function Dropdown(){
     function dropdown_states(){
         stateData.map((abbreviation)=>{
             return(       
-                <li>
-                    <option id={abbreviation} value="State" onChange={testprint}>Choose State</option>
-                </li>
+                console.log(abbreviation)
             )
         })
     }
