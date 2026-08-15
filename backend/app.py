@@ -103,6 +103,10 @@ def dosomething():
     print("I did something")
     return jsonify({"message": "JSON says hi!"})
 
+@app.route("/state_abbreviations")
+def state_abbreviations():
+    myList = myList.state_abbreviations
+    return jsonify(myList)
 init_db()
 
 if __name__ == "__main__":

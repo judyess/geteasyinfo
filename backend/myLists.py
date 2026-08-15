@@ -22,7 +22,7 @@ api_ops = [
 "setMonitor", 
 ]
 
-state_abbrevs=[
+state_abbreviations=[
 "AL",
 "AK",
 "AZ",

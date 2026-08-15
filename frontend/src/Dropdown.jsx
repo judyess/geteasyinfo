@@ -2,8 +2,11 @@ import React, {useState, useEffect} from "react";
 import state_abbreviations from "./state_abbreviations"
 import Menu from "./Menu.jsx"
 
+
+
 export default function Dropdown(){
-    const [stateData, setStateData] = useState([]);
+    const [stateData, setStateData] = useState();
+    const [choice, setChoice] = useState("");
 
     useEffect(() => {
         fetch('./state_abbreviations')
