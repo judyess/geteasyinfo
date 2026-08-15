@@ -17,7 +17,7 @@ function Prop(){
     }
     
     return(
-        <div>
+        <div className="app">
             <button type="submit" onClick={}>submit</button>
         </div>
     )

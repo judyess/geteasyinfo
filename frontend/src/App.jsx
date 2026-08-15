@@ -57,7 +57,7 @@ export default function App() {
   return (
     <div className="app">
     <Routes>
-      <Route path="/" element={<prop />}>Home</Route>
+      <Route path="/" element={<Prop />}></Route>
     </Routes>
       <h1>Todo List</h1>
 
