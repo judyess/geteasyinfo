@@ -21,14 +21,13 @@ app = Flask(__name__)
 # (e.g. https://your-domain.com) to restrict CORS to just that site.
 # Left unset, this allows any origin -- fine for local dev, not for prod.
 CORS(app, origins=os.environ.get("FRONTEND_URL", "*")) # ME: this is set in Render tool. So if Render runs the app, it will use that URL.
-
+#CORS(app, origins=os.environ.get())
 DATABASE_URL = os.environ["DATABASE_URL"]  # fails loudly if not set
 
-
+print(DATABASE_URL)
 def get_db():
     # RealDictCursor makes rows come back as dicts, like sqlite3.Row did
     return psycopg2.connect(DATABASE_URL, cursor_factory=RealDictCursor)
-
 
 def init_db():
     conn = get_db()
@@ -44,7 +43,6 @@ def init_db():
     conn.commit()
     conn.close()
 
-
 @app.route("/api/todos", methods=["GET"])
 def list_todos():
     conn = get_db()
@@ -53,7 +51,6 @@ def list_todos():
     rows = cur.fetchall()
     conn.close()
     return jsonify(rows)
-
 
 @app.route("/api/todos", methods=["POST"])
 def create_todo():
@@ -70,7 +67,6 @@ def create_todo():
     conn.commit()
     conn.close()
     return jsonify(row), 201
-
 
 @app.route("/api/todos/<int:todo_id>", methods=["PATCH"])
 def update_todo(todo_id):
@@ -93,7 +89,6 @@ def update_todo(todo_id):
     conn.commit()
     conn.close()
     return jsonify(updated)
-
 
 @app.route("/api/todos/<int:todo_id>", methods=["DELETE"])
 def delete_todo(todo_id):
