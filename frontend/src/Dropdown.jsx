@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import state_abbreviations from "./state_abbreviations"
 import Menu from "./Menu.jsx"
 
-states = {
+const states = {
   "Alabama": "AL",
   "Alaska": "AK",
   "Arizona": "AZ",
