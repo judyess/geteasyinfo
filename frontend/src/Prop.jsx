@@ -14,13 +14,18 @@ export default function Prop(){
     }
     function testprint(){
         console.log("props bro")
+        state_abbreviations.map((abbreviation)=>{
+            return(       
+                console.log(abbreviation)
+            )
+        })
     }
 
     function dropdown_states(){
         state_abbreviations.map((abbreviation)=>{
             return(       
                 <li>
-                    <option value={abbreviation} onChange={testprint}>{abbreviation}</option>
+                    <option value="" onChange={testprint}>Choose State</option>
                 </li>
             )
         })
