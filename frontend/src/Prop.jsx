@@ -21,9 +21,9 @@ export default function Prop(){
     
     return(
         <div className="app">
-            <button type="submit" onClick={testprint}>submit</button>
+            <button onClick={testprint}>submit</button>
         </div>
     )
 }
 
-export default Prop;
+//export default Prop;
