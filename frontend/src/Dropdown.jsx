@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import state_abbreviations from "./state_abbreviations.jsx"
+import state_abbreviations from "./state_abbreviations.json"
 import Menu from "./Menu.jsx"
 
 export default function Dropdown(){
