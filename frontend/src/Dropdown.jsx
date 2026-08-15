@@ -12,19 +12,16 @@ export default function Dropdown(){
         .catch((error)=>console.error("Error loading JSON"))
     }, []);
 
-    function reset(){
-        setServerData([]);
-    }
     function testprint(){
         console.log("props bro")
-        console.log(state_abbreviations[0])
+        console.log(stateData[0])
     }
 
     function dropdown_states(){
         stateData.map((abbreviation)=>{
             return(       
                 <li>
-                    <option value="" onChange={testprint}>Choose State</option>
+                    <option value="State" onChange={testprint}>Choose State</option>
                 </li>
             )
         })
