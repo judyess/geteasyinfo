@@ -77,7 +77,11 @@ export default function Dropdown(){
             <h1>Prop Header</h1>
             <select>
                 <ul>
-                    {dropdown_states}
+                    <li>
+                    {Object.entries(states).map(([key, value])=> (
+                        <option key={key} value={key}>{value}</option>
+                    ))}
+                    </li>
                 </ul>
                 </select>
             <button onClick={testprint}>submit</button>
