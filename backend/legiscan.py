@@ -33,16 +33,12 @@ def get_identifier_operation(identifier_choice=""):
 BASE_URL= f"https://api.legiscan.com/?key={API_KEY}&op={ID_CHOICE}&state={STATE}"
 
 def api_connect():
-    # Execute the GET request
     response = requests.get(BASE_URL)
     if response.status_code == 200:
         resp = response.json()
         print("status code 200, true")
-        #print(resp)
-        
-        # Verify API status response
+
         if resp.get("status") == "OK":
-            # Extract the bill master list payload
             data = resp.get(PARAMETER, {})
             print("resp.get status OK: true")
             print(f"OUTPUT: {data}")

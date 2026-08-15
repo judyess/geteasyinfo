@@ -58,7 +58,6 @@ export default function App() {
   return (
     <div className="app">
       <h1>Todo List</h1>
-      <Dropdown />
       <form onSubmit={addTodo} className="add-form">
         <button onClick={pressButton}>Console Message</button>
         <input
