@@ -19,10 +19,8 @@ export default function Dropdown(){
     }
 
     function dropdown_states(){
-        stateData.map((abbreviation)=>{
-            return(       
-                console.log(abbreviation)
-            )
+        stateData.map((abbreviation)=>{      
+            console.log(abbreviation)
         })
     }
     
