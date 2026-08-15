@@ -9,7 +9,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <BrowserRouter>
     <Routes>
       <Route path="/" element={<App />} />
-      <Route path="/api/do" element={<Prop />} />
+      <Route path="/Prop" element={<Prop />} />
     </Routes>
   </BrowserRouter>
 );

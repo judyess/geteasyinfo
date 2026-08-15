@@ -19,6 +19,7 @@ export default function Prop(){
     
     return(
         <div className="app">
+            <h1>Prop Header</h1>
             <button onClick={testprint}>submit</button>
 
         </div>
