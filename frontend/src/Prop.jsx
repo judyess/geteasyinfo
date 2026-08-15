@@ -17,7 +17,7 @@ export default function Prop(){
     }
 
     function dropdown_states(){
-        abbreviations.map((abbreviation)=>{
+        state_abbreviations.map((abbreviation)=>{
             return(
                 <div>
                 <select id="options" key={abbreviation}>
