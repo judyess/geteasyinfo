@@ -56,16 +56,9 @@ states = {
 }
 
 export default function Dropdown(){
-    const [stateData, setStateData] = useState();
+    const [stateData, setStateData] = useState(states);
     const [choice, setChoice] = useState("");
 
-    useEffect(() => {
-        fetch('./state_abbreviations')
-        .then((response)=>response.json())
-        .then((jsonData)=>setStateData(jsonData))
-        .catch((error)=>console.error("Error loading JSON"))
-        console.log(stateData)
-    }, []);
 
     function testprint(){
         console.log("props bro")
