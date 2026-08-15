@@ -18,11 +18,10 @@ export default function Prop(){
 
     function dropdown_states(){
         state_abbreviations.map((abbreviation)=>{
-            return(
-                <div>
-                <select id="options" value={abbreviation}>
-                    <option value={abbreviation}>{abbreviation}</option>
-                </select></div>
+            return(       
+                <li>
+                    <option value={abbreviation} onChange={testprint}>{abbreviation}</option>
+                </li>
             )
         })
     }
@@ -31,7 +30,11 @@ export default function Prop(){
         <div>
             <Menu />
             <h1>Prop Header</h1>
-            {dropdown_states}
+            <select>
+                <ul>
+                    {dropdown_states}
+                </ul>
+                </select>
             <button onClick={testprint}>submit</button>
         </div>
     )
