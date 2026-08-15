@@ -20,7 +20,7 @@ export default function Prop(){
         state_abbreviations.map((abbreviation)=>{
             return(
                 <div>
-                <select id="options" key={abbreviation}>
+                <select id="options" value={abbreviation}>
                     <option value={abbreviation}>{abbreviation}</option>
                 </select></div>
             )
