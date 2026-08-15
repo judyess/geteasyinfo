@@ -51,7 +51,7 @@ export default function App() {
     setTodos(todos.filter((t) => t.id !== id));
   }
   async function pressButton() {
-    const res = await fetch(`/api/do`, { method: "POST" });
+    const res = await fetch(`${API_URL}/api/do`, { method: "POST" });
     const data = await res.json();
     console.log(data.message);
   }
