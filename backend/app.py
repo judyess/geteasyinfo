@@ -98,6 +98,11 @@ def delete_todo(todo_id):
     conn.close()
     return "", 204
 
+@app.route("/api/do", methods=["POST"])
+def dosomething():
+    print("I did something")
+    return jsonify({"message": "JSON says hi!"})
+
 init_db()
 
 if __name__ == "__main__":

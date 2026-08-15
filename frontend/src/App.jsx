@@ -50,12 +50,17 @@ export default function App() {
     await fetch(`${API_URL}/api/todos/${id}`, { method: "DELETE" });
     setTodos(todos.filter((t) => t.id !== id));
   }
-
+  async function pressButton() {
+    const res = await fetch(`/api/do`, { method: "POST" });
+    const data = await res.json();
+    console.log(data.message);
+  }
   return (
     <div className="app">
       <h1>Todo List</h1>
 
       <form onSubmit={addTodo} className="add-form">
+        <button onClick={pressButton}>Console Message</button>
         <input
           value={text}
           onChange={(e) => setText(e.target.value)}
