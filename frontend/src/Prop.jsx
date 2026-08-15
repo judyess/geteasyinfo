@@ -14,16 +14,16 @@ export default function Prop(){
     }
 
     function dropdown_states(){
-        
+        return(<div>
+            <select id="options" value="hi"></select>
+        </div>)
     }
     
     return(
-        <div className="app">
+        <div>
             <h1>Prop Header</h1>
+            <select id="options" value="hi"></select>
             <button onClick={testprint}>submit</button>
-
         </div>
     )
 }
-
-//export default Prop;
