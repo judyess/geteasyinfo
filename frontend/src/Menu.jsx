@@ -8,7 +8,7 @@ export default function Menu(){
             <div className="main-links">
             <ul>
             <li><NavLink to="/" exact='true'>Home</NavLink></li>
-            <li><NavLink to="/Prop" exact='true'> Prop </NavLink></li>
+            <li><NavLink to="/dropdown" exact='true'> Dropdown </NavLink></li>
             </ul>
             </div>
         </div>
