@@ -3,7 +3,7 @@ export default function Prop(){
     const [serverData, setServerData] = useState([]);
 
     useEffect(() => {
-        print("Prop props loaded")
+        console.log("Prop props loaded")
     }, []);
 
     function reset(){
