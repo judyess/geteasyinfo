@@ -1,12 +1,12 @@
 import React, {useState, useEffect} from "react";
-import state_abbreviations from "./state_abbreviations"
+import state_abbreviations from "./state_abbreviations.jsx"
 import Menu from "./Menu.jsx"
 
 export default function Dropdown(){
     const [stateData, setStateData] = useState([]);
 
     useEffect(() => {
-        fetch('./db.json')
+        fetch('./state_abbreviations')
         .then((response)=>response.json())
         .then((jsonData)=>setStateData(jsonData))
         .catch((error)=>console.error("Error loading JSON"))
