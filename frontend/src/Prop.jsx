@@ -34,10 +34,7 @@ export default function Prop(){
         <div>
             <Menu />
             <h1>Prop Header</h1>
-            <select id="options" value="hi">
-                <option value="apples">apples</option>
-                <option value="crapples">crapples</option>
-            </select>
+            {dropdown_states}
             <button onClick={testprint}>submit</button>
         </div>
     )
