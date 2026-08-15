@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from "react";
-import state_abbreviations from "./state_abbreviations"
 import Menu from "./Menu.jsx"
 
 const states = {
@@ -58,28 +57,25 @@ const states = {
 export default function Dropdown(){
     const [stateData, setStateData] = useState(states);
     const [choice, setChoice] = useState("");
+    const []
 
 
     function testprint(){
         console.log("props bro")
         console.log(stateData)
+        console.log(choice)
     }
 
-    function dropdown_states(){
-        states.map((abbreviation)=>{      
-            <option key={abbreviation} value="">{abbreviation}</option>
-        })
-    }
     
     return(
         <div>
             <Menu />
             <h1>Prop Header</h1>
-            <select>
+            <select value={choice} onChange={(e)=>setChoice(e.target.value)}>
                 <ul>
                     <li>
                     {Object.entries(states).map(([key, value])=> (
-                        <option key={key} value={key}>{value}</option>
+                        <option key={key}>{value}</option>
                     ))}
                     </li>
                 </ul>
