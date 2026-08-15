@@ -23,8 +23,8 @@ export default function Prop(){
         <div>
             <h1>Prop Header</h1>
             <select id="options" value="hi">
-                <option value="apples"></option>
-                <option value="crapples"></option>
+                <option value="apples">apples</option>
+                <option value="crapples">crapples</option>
             </select>
             <button onClick={testprint}>submit</button>
         </div>
