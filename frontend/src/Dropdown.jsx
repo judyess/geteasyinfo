@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import state_abbreviations from "./state_abbreviations.json"
+import state_abbreviations from "./state_abbreviations"
 import Menu from "./Menu.jsx"
 
 export default function Dropdown(){
@@ -10,7 +10,7 @@ export default function Dropdown(){
         .then((response)=>response.json())
         .then((jsonData)=>setStateData(jsonData))
         .catch((error)=>console.error("Error loading JSON"))
-        console.log(jsonData)
+        console.log(stateData)
     }, []);
 
     function testprint(){

@@ -57,8 +57,9 @@ export default function App() {
     console.log(data.message);
   }
   return (
+  <div>
+    <Menu />
     <div className="app">
-      <Menu />
       <h1>Todo List</h1>
       <form onSubmit={addTodo} className="add-form">
         <button onClick={pressButton}>Console Message</button>
@@ -94,5 +95,6 @@ export default function App() {
         </ul>
       )}
     </div>
+  </div>
   );
 }
