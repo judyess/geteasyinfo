@@ -2,11 +2,14 @@ import React, {useState, useEffect} from "react";
 import state_abbreviations from "./state_abbreviations"
 import Menu from "./Menu.jsx"
 
-export default function Prop(){
-    const [serverData, setServerData] = useState([]);
+export default function Dropdown(){
+    const [stateData, setStateData] = useState([]);
 
     useEffect(() => {
-        console.log("Prop props loaded")
+        fetch('./db.json')
+        .then((response)=>response.json())
+        .then((jsonData)=>setStateData(jsonData))
+        .catch((error)=>console.error("Error loading JSON"))
     }, []);
 
     function reset(){
@@ -18,7 +21,7 @@ export default function Prop(){
     }
 
     function dropdown_states(){
-        state_abbreviations.map((abbreviation)=>{
+        stateData.map((abbreviation)=>{
             return(       
                 <li>
                     <option value="" onChange={testprint}>Choose State</option>
