@@ -22,7 +22,7 @@ export default function Dropdown(){
         stateData.map((abbreviation)=>{
             return(       
                 <li>
-                    <option value="State" onChange={testprint}>Choose State</option>
+                    <option id={abbreviation} value="State" onChange={testprint}>Choose State</option>
                 </li>
             )
         })
