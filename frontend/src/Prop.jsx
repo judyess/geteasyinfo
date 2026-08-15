@@ -25,9 +25,6 @@ export default function Prop(){
                 </select></div>
             )
         })
-        return(<div>
-            
-        </div>)
     }
     
     return(
