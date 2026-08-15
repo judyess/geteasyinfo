@@ -12,10 +12,15 @@ export default function Prop(){
     function testprint(){
         console.log("props bro")
     }
+
+    function dropdown_states(){
+        
+    }
     
     return(
         <div className="app">
             <button onClick={testprint}>submit</button>
+
         </div>
     )
 }
