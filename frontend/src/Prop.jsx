@@ -14,11 +14,7 @@ export default function Prop(){
     }
     function testprint(){
         console.log("props bro")
-        state_abbreviations.map((abbreviation)=>{
-            return(       
-                console.log(abbreviation)
-            )
-        })
+        console.log(state_abbreviations[0])
     }
 
     function dropdown_states(){
