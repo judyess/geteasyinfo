@@ -101,7 +101,7 @@ def delete_todo(todo_id):
 @app.route("/api/do", methods=["POST"])
 def dosomething():
     print("I did something")
-    return jsonify({"message": "JSON says hi!"})
+    return ()
 
 init_db()
 
