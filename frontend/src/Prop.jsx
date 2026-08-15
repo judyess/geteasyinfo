@@ -12,12 +12,6 @@ export default function Prop(){
     function testprint(){
         console.log("props bro")
     }
-
-    async function fetchDatabase() {
-        const res = await fetch(`${API_URL}/api/todos`);
-        const data = await res.json();
-        setServerData(data)
-    }
     
     return(
         <div className="app">
