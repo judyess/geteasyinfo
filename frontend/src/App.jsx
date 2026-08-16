@@ -57,7 +57,7 @@ export default function App() {
     const res = await fetch(`${API_URL}/api/do`, { method: "POST", 
         method: "POST",
         headers:{ "Content-Type" : "application/json" },
-        body: JSON.stringify(choice),
+        body: JSON.stringify("hi"),
     });
     const data = await res.json();
     console.log(data.message);
@@ -70,7 +70,7 @@ export default function App() {
       const response = await fetch(`${API_URL}/api/dropdown/${choice}`, { 
         method: "POST",
         headers:{ "Content-Type" : "application/json" },
-        body: JSON.stringify(option),
+        body: JSON.stringify({data: choice}),
       });
       const result = await response.json();
       console.log('server response: ', result);
