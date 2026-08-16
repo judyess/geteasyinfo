@@ -58,9 +58,9 @@ const states = {
 export default function Dropdown({func}){
     const [stateData, setStateData] = useState(states);
     const [choice, setChoice] = useState("");
-    function dropdown_handler(e, value){
+    function dropdown_handler(e){
         e.preventDefault()
-        setChoice(value)
+        setChoice(e.target.value)
     }
     function callback(e){
         e.preventDefault()
@@ -70,7 +70,7 @@ export default function Dropdown({func}){
         <div>
             <h1>Prop Header</h1>
             <form onSubmit={callback}>
-            <select value={choice} onChange={(e)=>dropdown_handler(e, value)}>
+            <select value={choice} onChange={(e)=>dropdown_handler}>
                 <ul>
                     <li>
                     {Object.entries(states).map(([key, value])=> (
