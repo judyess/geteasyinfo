@@ -73,7 +73,8 @@ export default function Dropdown(){
         body: JSON.stringify(choice)
      });
         const res = await res.json();
-        console.log(data.message);
+        console.log("data.message placeholder")
+        //console.log(data.message);
     }
     return(
         <div>
