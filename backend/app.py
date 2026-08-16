@@ -104,7 +104,7 @@ def dosomething():
     conn.close()
     return jsonify({"message": "messaged received"}) # message changed to string from var
 
-@app.route("/api/dropdown", methods=["PATCH"])
+@app.route("/dropdown", methods=["POST"])
 def receive_dropdown_option(choice):
     choice = request.get_json(force=True) # added force=True
     return jsonify(choice)
