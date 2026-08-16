@@ -53,10 +53,11 @@ export default function App() {
     setTodos(todos.filter((t) => t.id !== id));
   }
   async function pressButton() {
+    console.log("pressed")
     const res = await fetch(`${API_URL}/api/do`, { method: "POST", 
         method: "POST",
         headers:{ "Content-Type" : "application/json" },
-        body: JSON.stringify({choice}),
+        body: JSON.stringify(choice),
     });
     const data = await res.json();
     console.log(data.message);
