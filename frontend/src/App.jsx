@@ -61,28 +61,14 @@ export default function App() {
     console.log(data.message);
   }
 
-  // receives data
-  const handle_dropdown = async (choice) =>{
-    setOption(choice)
-    try {
-      const response = await fetch(`${API_URL}/api/dropdown`, { //removed a slash
-        method: "POST",
-        headers:{ "Content-Type" : "application/json" },
-        body: JSON.stringify({option: choice}),
-      });
-      const result = await response.json();
-      console.log('server response: ', result);
-      console.log('server response: ', result.message);
-      console.log("dropdown handled")
-      console.log(choice)
-    } catch (error) {
-      console.log("error passing choice to server")
-    }
-  }
   const testfn = async(newIncData)=>{
+    console.log("testfn with URL addon says hi")
         try {
             const response = await axios.post(`${API_URL}/dropdown/${newIncData}`, newIncData)
             console.log('Update successful:', response.data);
+            console.log(response)
+            setOption(response)
+            console.log(option)
         } catch(error) {
             console.log("error updating data: ", error)
         }
