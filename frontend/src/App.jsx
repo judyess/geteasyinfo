@@ -88,6 +88,15 @@ export default function App() {
             console.log("error updating data: ", error)
         }
     }
+
+    const getTest = async(newData)=>{
+      try {
+            const response = await axios.get(`${API_URL}/api/dropdown`, newIncData)
+            console.log('Update successful:', response.data);
+        } catch(error) {
+            console.log("error updating data: ", error)
+        }
+    }
   return (
   <div>
     <Menu />
@@ -96,6 +105,7 @@ export default function App() {
       <h1>Todo List</h1>
       <form onSubmit={addTodo} className="add-form">
         <button onClick={pressButton}>Console Message</button>
+        <button onClick={getTest}>getTest </button>
         <input
           value={text}
           onChange={(e) => setText(e.target.value)}
