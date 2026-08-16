@@ -80,6 +80,7 @@ export default function Dropdown(){
         <div>
             <Menu />
             <h1>Prop Header</h1>
+            <form onSubmit={send_dropdown_option}>
             <select value={choice} onChange={(e)=>setChoice(e.target.value)}>
                 <ul>
                     <li>
@@ -90,6 +91,7 @@ export default function Dropdown(){
                 </ul>
                 </select>
             <button onClick={testprint}>output</button>
+            </form>
         </div>
     )
 }
