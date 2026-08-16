@@ -62,7 +62,8 @@ export default function Dropdown({func}){
         e.preventDefault()
         setChoice(value)
     }
-    function callback(){
+    function callback(e){
+        e.preventDefault()
         func(choice)
     }
     return(
