@@ -60,11 +60,12 @@ export default function App() {
     console.log(data.message);
   }
 
+
   // receives data
   const handle_dropdown = async (choice) =>{
     setOption(choice)
     try {
-      const response = await fetch(`${API_URL}/api/dropdown/${choice}`, { 
+      const response = await fetch(`${API_URL}/api/dropdown`, { //removed a slash
         method: "POST",
         headers:{ "Content-Type" : "application/json" },
         body: JSON.stringify({option: choice}),
@@ -79,10 +80,18 @@ export default function App() {
     }
   }
 
+  const testfn = async(newIncData)=>{
+        try {
+            const response = await axios.post(`${API_URL}/api/dropdown`, newIncData)
+            console.log('Update successful:', response.data);
+        } catch(error) {
+            console.log("error updating data: ", error)
+        }
+    }
   return (
   <div>
     <Menu />
-    <Dropdown func={handle_dropdown}/>
+    <Dropdown func={testfn}/>  {/* swapped with handle dropdown function*/}
     <div className="app">
       <h1>Todo List</h1>
       <form onSubmit={addTodo} className="add-form">

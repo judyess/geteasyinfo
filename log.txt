@@ -3,3 +3,5 @@ added requests to requirements
 added a test legiscan function 
 >> npm install react-router-dom
 added to requirements
+installed axios
+    rewrote some POST functions

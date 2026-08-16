@@ -99,12 +99,12 @@ def delete_todo(todo_id):
 
 @app.route("/api/do", methods=["POST"])
 def dosomething():
-    incomingData = request.get_json()
-    return jsonify({"message": "incomingData"})
+    data = request.get_json()
+    return jsonify({"message": "messaged received"}) # message changed to string from var
 
 @app.route("/api/dropdown", methods=["POST"])
 def receive_dropdown_option(choice):
-    choice = request.get_json()
+    choice = request.get_json(force=True) # added force=True
     return jsonify({"message": {choice.data}})
 
 
