@@ -61,12 +61,14 @@ export default function Dropdown({func}){
     function dropdown_handler(e, value){
         e.preventDefault()
         setChoice(value)
+    }
+    function callback(){
         func(choice)
     }
     return(
         <div>
             <h1>Prop Header</h1>
-            <form onSubmit={sendData}>
+            <form onSubmit={callback}>
             <select value={choice} onChange={(e)=>dropdown_handler(e, value)}>
                 <ul>
                     <li>
