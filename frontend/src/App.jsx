@@ -11,8 +11,7 @@ export default function App() {
   const [todos, setTodos] = useState([]);
   const [text, setText] = useState("");
   const [loading, setLoading] = useState(true);
-  const [dropdownChoice, setDropdownChoice] = useState("");
-
+ 
   useEffect(() => {
     fetchTodos();
   }, []);
@@ -58,12 +57,22 @@ export default function App() {
     console.log(data.message);
   }
 
-  const handle_dropdown = (choice) =>{
-    setDropdownChoice(choice);
+  // receives data
+  const handle_dropdown = async (choice) =>{
+    try {
+      const response = await fetch(`${API_URL}/dropdown`, { 
+        method: "POST",
+        headers:{"Content-Type":"application/json"},
+        body: JSON.stringify({choice}),
+      });
+      const result = await response.json();
+    console.log('server response: ', result);
+    console.log('server response: ', result.message);
     console.log("dropdown handled")
     console.log(choice)
-    console.log("state choice var:")
-    console.log(dropdownChoice)
+    } catch (error) {
+      console.log("error passing choice to server")
+    }
   }
 
   return (
