@@ -64,7 +64,17 @@ export default function Dropdown(){
         console.log(choice)
     }
 
-    
+    function send_dropdown_option(e){
+        e.preventDefault()
+        const res = await fetch(`${API_URL}/dropdown`, { 
+            method: "POST",
+        headers: {'Content-Type':'application/json',
+        },
+        body: JSON.stringify(choice)
+     });
+        const res = await res.json();
+        console.log(data.message);
+    }
     return(
         <div>
             <Menu />
@@ -78,7 +88,7 @@ export default function Dropdown(){
                     </li>
                 </ul>
                 </select>
-            <button onClick={testprint}>submit</button>
+            <button onClick={testprint}>output</button>
         </div>
     )
 }
