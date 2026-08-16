@@ -100,7 +100,7 @@ def delete_todo(todo_id):
 @app.route("/api/do", methods=["POST"])
 def dosomething():
     incomingData = request.get_json()
-    return jsonify({"message": incomingData})
+    return jsonify({"message": "incomingData"})
 
 @app.route("/api/dropdown", methods=["POST"])
 def receive_dropdown_option(choice):
