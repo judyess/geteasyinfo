@@ -100,14 +100,12 @@ def delete_todo(todo_id):
 
 @app.route("/api/do", methods=["POST"])
 def dosomething():
-    print("I did something")
     return jsonify({"message": "JSON says hi!"})
 
-@app.route("/api/dropdown/<str:choice>", methods=["POST"])
+@app.route("/api/dropdown", methods=["POST"])
 def receive_dropdown_option(choice):
     choice = request.get_json()
-    print(choice)
-    return jsonify({"message": "this is from Flask's receipt of choice"})
+    return jsonify({"message": f"this is from Flask's receipt of choice {choice}"})
 
 
 init_db()

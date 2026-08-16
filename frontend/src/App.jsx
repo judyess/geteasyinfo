@@ -66,10 +66,10 @@ export default function App() {
         body: JSON.stringify(choice),
       });
       const result = await response.json();
-    console.log('server response: ', result);
-    console.log('server response: ', result.message);
-    console.log("dropdown handled")
-    console.log(choice)
+      console.log('server response: ', result);
+      console.log('server response: ', result.message);
+      console.log("dropdown handled")
+      console.log(choice)
     } catch (error) {
       console.log("error passing choice to server")
     }
