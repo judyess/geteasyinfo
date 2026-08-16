@@ -56,7 +56,7 @@ export default function App() {
 
   async function pressButton() {
     console.log("axios pressed")
-    const res = await axios.post(`${API_URL}/do`);
+    const res = await axios.get(`${API_URL}/do`);
     const data = await res.json();
     console.log(data.message);
   }
