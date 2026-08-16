@@ -56,6 +56,7 @@ export default function App() {
     const data = await res.json();
     console.log(data.message);
   }
+  
   return (
   <div>
     <Menu />

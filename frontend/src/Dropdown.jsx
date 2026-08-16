@@ -91,7 +91,7 @@ export default function Dropdown(){
                     </li>
                 </ul>
                 </select>
-            <button onClick={testprint}>output</button>
+            <button type="submit">submit</button>
             </form>
         </div>
     )
