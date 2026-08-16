@@ -54,8 +54,8 @@ export default function App() {
   }
   async function pressButton() {
     console.log("pressed")
-    const res = await fetch(`${API_URL}/api/do`, { method: "POST", 
-        method: "POST",
+    const res = await fetch(`${API_URL}/api/do`, { 
+        method: "POST", 
         headers:{ "Content-Type" : "application/json" },
         body: JSON.stringify("hi"),
     });
@@ -70,7 +70,7 @@ export default function App() {
       const response = await fetch(`${API_URL}/api/dropdown/${choice}`, { 
         method: "POST",
         headers:{ "Content-Type" : "application/json" },
-        body: JSON.stringify({data: choice}),
+        body: JSON.stringify({option: choice}),
       });
       const result = await response.json();
       console.log('server response: ', result);
