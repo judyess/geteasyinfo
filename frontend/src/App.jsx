@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Dropdown from "./Dropdown"
 import Menu from "./Menu"
+import axios from 'axios'
 // In local dev this is empty, so fetch("/api/...") stays relative and
 // Vite's proxy (vite.config.js) forwards it to the Flask dev server.
 // In production, set VITE_API_URL to your deployed backend's URL
@@ -52,6 +53,7 @@ export default function App() {
     await fetch(`${API_URL}/api/todos/${id}`, { method: "DELETE" });
     setTodos(todos.filter((t) => t.id !== id));
   }
+
   async function pressButton() {
     console.log("pressed")
     const res = await fetch(`${API_URL}/api/do`, { 
@@ -59,7 +61,6 @@ export default function App() {
     const data = await res.json();
     console.log(data.message);
   }
-
 
   // receives data
   const handle_dropdown = async (choice) =>{
@@ -79,7 +80,6 @@ export default function App() {
       console.log("error passing choice to server")
     }
   }
-
   const testfn = async(newIncData)=>{
         try {
             const response = await axios.post(`${API_URL}/api/dropdown`, newIncData)
