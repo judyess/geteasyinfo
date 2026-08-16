@@ -56,7 +56,7 @@ export default function App() {
 
   async function pressButton() {
     console.log("pressed")
-    const res = await fetch(`${API_URL}/api/do`, { 
+    const res = await fetch(`${API_URL}/do`, { 
         method: "POST"});
     const data = await res.json();
     console.log(data.message);

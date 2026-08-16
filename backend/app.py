@@ -99,7 +99,9 @@ def delete_todo(todo_id):
 
 @app.route("/do", methods=["POST"])
 def dosomething():
-    #data = request.get_json(force=True)
+    data = request.get_json(force=True)
+    conn = get_db()
+    conn.close()
     return jsonify({"message": "messaged received"}) # message changed to string from var
 
 @app.route("/api/dropdown", methods=["PATCH"])
