@@ -81,7 +81,7 @@ export default function App() {
   }
   const testfn = async(newIncData)=>{
         try {
-            const response = await axios.put(`${API_URL}/dropdown`, newIncData)
+            const response = await axios.post(`${API_URL}/dropdown/${newIncData}`, newIncData)
             console.log('Update successful:', response.data);
         } catch(error) {
             console.log("error updating data: ", error)
