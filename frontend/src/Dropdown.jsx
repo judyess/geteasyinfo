@@ -67,7 +67,7 @@ export default function Dropdown(){
 
     async function send_dropdown_option(e){
         e.preventDefault()
-        const res = await fetch(`${API_URL}/dropdown`, { 
+        const res = await fetch(`${API_URL}/api/dropdown`, { 
             method: "POST",
         headers: {'Content-Type':'application/json',
         },
