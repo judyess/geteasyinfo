@@ -104,9 +104,9 @@ def dosomething():
     return jsonify({"message": "JSON says hi!"})
 
 @app.route("/api/dropdown", methods=["POST"])
-def receive_dropdown_option():
-    data = request.get_json()
-    print(data)
+def receive_dropdown_option(choice):
+    choice = request.get_json()
+    print(choice)
     return jsonify({"message": "this is from Flask's receipt of choice"})
 
 
