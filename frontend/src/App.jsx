@@ -11,6 +11,7 @@ export default function App() {
   const [todos, setTodos] = useState([]);
   const [text, setText] = useState("");
   const [loading, setLoading] = useState(true);
+  const [option, setOption] = useState("")
  
   useEffect(() => {
     fetchTodos();
@@ -52,18 +53,23 @@ export default function App() {
     setTodos(todos.filter((t) => t.id !== id));
   }
   async function pressButton() {
-    const res = await fetch(`${API_URL}/api/do`, { method: "POST" });
+    const res = await fetch(`${API_URL}/api/do`, { method: "POST", { 
+        method: "POST",
+        headers:{ "Content-Type" : "application/json" },
+        body: JSON.stringify({choice}),
+    });
     const data = await res.json();
     console.log(data.message);
   }
 
   // receives data
   const handle_dropdown = async (choice) =>{
+    setOption(choice)
     try {
       const response = await fetch(`${API_URL}/api/dropdown/${choice}`, { 
         method: "POST",
-        headers:{"Content-Type":"application/json"},
-        body: JSON.stringify(choice),
+        headers:{ "Content-Type" : "application/json" },
+        body: JSON.stringify(option),
       });
       const result = await response.json();
       console.log('server response: ', result);
