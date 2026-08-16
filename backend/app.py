@@ -103,7 +103,7 @@ def dosomething():
     print("I did something")
     return jsonify({"message": "JSON says hi!"})
 
-@app.route("/api/dropdown", methods=["POST"])
+@app.route("/api/dropdown/<str:choice>", methods=["POST"])
 def receive_dropdown_option(choice):
     choice = request.get_json()
     print(choice)

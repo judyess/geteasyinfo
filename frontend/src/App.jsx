@@ -60,7 +60,7 @@ export default function App() {
   // receives data
   const handle_dropdown = async (choice) =>{
     try {
-      const response = await fetch(`${API_URL}/api/dropdown`, { 
+      const response = await fetch(`${API_URL}/api/dropdown/${choice}`, { 
         method: "POST",
         headers:{"Content-Type":"application/json"},
         body: JSON.stringify(choice),
