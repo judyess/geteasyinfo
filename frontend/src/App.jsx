@@ -11,6 +11,7 @@ export default function App() {
   const [todos, setTodos] = useState([]);
   const [text, setText] = useState("");
   const [loading, setLoading] = useState(true);
+  const [dropdownChoice, setDropdownChoice] = useState("");
 
   useEffect(() => {
     fetchTodos();
@@ -57,22 +58,16 @@ export default function App() {
     console.log(data.message);
   }
 
-  async function send_dropdown_option(choice){
-          const res = await fetch(`${API_URL}/api/dropdown`, { 
-              method: "POST",
-          headers: {'Content-Type':'application/json',
-          },
-          body: JSON.stringify(choice)
-       });
-          const result = await res.json(); //whats this for?
-          console.log("data.message placeholder")
-          console.log(result);
-      }
+  const handle_dropdown = (choice) =>{
+    setDropdownChoice(choice);
+    console.log("dropdown handled")
+    console.log(choice)
+  }
 
   return (
   <div>
     <Menu />
-    <Dropdown func={send_dropdown_option}/>
+    <Dropdown func={handle_dropdown}/>
     <div className="app">
       <h1>Todo List</h1>
       <form onSubmit={addTodo} className="add-form">

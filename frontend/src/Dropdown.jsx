@@ -55,7 +55,7 @@ const states = {
   "Wyoming": "WY"
 }
 
-export default function Dropdown(props){
+export default function Dropdown({func}){
     const [stateData, setStateData] = useState(states);
     const [choice, setChoice] = useState("");
 
@@ -65,12 +65,14 @@ export default function Dropdown(props){
         console.log(choice)
     }
 
-    
+    const sendData =()=>{
+        func(choice)
+    }
     return(
         <div>
             <Menu />
             <h1>Prop Header</h1>
-            <form onSubmit={props.func(choice)}>
+            <form onSubmit={sendData}>
             <select value="" onChange={(e)=>setChoice(e.target.value)}>
                 <ul>
                     <li>
