@@ -56,10 +56,23 @@ export default function App() {
     const data = await res.json();
     console.log(data.message);
   }
-  
+
+  async function send_dropdown_option(choice){
+          const res = await fetch(`${API_URL}/api/dropdown`, { 
+              method: "POST",
+          headers: {'Content-Type':'application/json',
+          },
+          body: JSON.stringify(choice)
+       });
+          const result = await res.json(); //whats this for?
+          console.log("data.message placeholder")
+          console.log(result);
+      }
+
   return (
   <div>
     <Menu />
+    <Dropdown func={send_dropdown_option}/>
     <div className="app">
       <h1>Todo List</h1>
       <form onSubmit={addTodo} className="add-form">

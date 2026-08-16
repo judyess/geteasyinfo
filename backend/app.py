@@ -106,6 +106,7 @@ def dosomething():
 @app.route("/api/dropdown", methods=["POST"])
 def receive_dropdown_option():
     data = request.get_json()
+    print(data)
     return jsonify({"message": "this is from Flask's receipt of choice"})
 
 

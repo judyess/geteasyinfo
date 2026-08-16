@@ -55,7 +55,7 @@ const states = {
   "Wyoming": "WY"
 }
 
-export default function Dropdown(){
+export default function Dropdown(props){
     const [stateData, setStateData] = useState(states);
     const [choice, setChoice] = useState("");
 
@@ -65,24 +65,13 @@ export default function Dropdown(){
         console.log(choice)
     }
 
-    async function send_dropdown_option(e){
-        e.preventDefault()
-        const res = await fetch(`${API_URL}/api/dropdown`, { 
-            method: "POST",
-        headers: {'Content-Type':'application/json',
-        },
-        body: JSON.stringify(choice)
-     });
-        const result = await res.json(); //whats this for?
-        console.log("data.message placeholder")
-        console.log(result.message);
-    }
+    
     return(
         <div>
             <Menu />
             <h1>Prop Header</h1>
-            <form onSubmit={send_dropdown_option}>
-            <select value={choice} onChange={(e)=>setChoice(e.target.value)}>
+            <form onSubmit={props.func(choice)}>
+            <select value="" onChange={(e)=>setChoice(e.target.value)}>
                 <ul>
                     <li>
                     {Object.entries(states).map(([key, value])=> (
