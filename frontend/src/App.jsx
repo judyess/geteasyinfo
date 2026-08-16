@@ -89,10 +89,10 @@ export default function App() {
         }
     }
 
-    const getTest = async(newData)=>{
+    const getTest = async()=>{
       try {
             const response = await axios.get(`${API_URL}/api/dropdown`, newIncData)
-            console.log('Update successful:', response.data);
+            console.log('Update successful:', response.message);
         } catch(error) {
             console.log("error updating data: ", error)
         }
