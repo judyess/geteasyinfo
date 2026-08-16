@@ -65,12 +65,12 @@ export default function Dropdown({func}){
         console.log(choice)
     }
 
-    const sendData =()=>{
+    const sendData =(e)=>{
+        e.preventDefault()
         func(choice)
     }
     return(
         <div>
-            <Menu />
             <h1>Prop Header</h1>
             <form onSubmit={sendData}>
             <select value="" onChange={(e)=>setChoice(e.target.value)}>

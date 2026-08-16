@@ -59,7 +59,6 @@ export default function App() {
   }
 
   const handle_dropdown = (choice) =>{
-    choice.preventDefault()
     setDropdownChoice(choice);
     console.log("dropdown handled")
     console.log(choice)
