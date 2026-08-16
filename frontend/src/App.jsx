@@ -62,6 +62,7 @@ export default function App() {
     setDropdownChoice(choice);
     console.log("dropdown handled")
     console.log(choice)
+    console.log("state choice var:")
     console.log(dropdownChoice)
   }
 
