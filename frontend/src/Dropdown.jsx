@@ -58,15 +58,16 @@ const states = {
 export default function Dropdown({func}){
     const [stateData, setStateData] = useState(states);
     const [choice, setChoice] = useState("");
-    const sendData =(e)=>{
+    function dropdown_handler(e, value){
         e.preventDefault()
+        setChoice(value)
         func(choice)
     }
     return(
         <div>
             <h1>Prop Header</h1>
             <form onSubmit={sendData}>
-            <select value={choice} onChange={(e)=>setChoice(e.target.value)}>
+            <select value={choice} onChange={(e)=>dropdown_handler(e, value)}>
                 <ul>
                     <li>
                     {Object.entries(states).map(([key, value])=> (
