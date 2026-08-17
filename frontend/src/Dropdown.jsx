@@ -64,15 +64,16 @@ export default function Dropdown({func}){
         console.log(e.target.value)
         console.log("Selected option:", selectedValue);
     }
-}
+
     function ready(){
         func(choice)
     }
+
     return(
         <div>
             <h1>Prop Header</h1>
             <form onSubmit={ready}>
-            <select value={choice} onChange={(e)=>dropdown_handler(e)}>
+            <select value={choice} onChange={(e)=>dropdown_handler}>
                 <ul>
                     <li>
                     {Object.entries(states).map(([key, value])=> (
@@ -85,4 +86,4 @@ export default function Dropdown({func}){
             </form>
         </div>
     )
-
+}
