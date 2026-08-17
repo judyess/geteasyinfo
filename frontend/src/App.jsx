@@ -72,7 +72,7 @@ export default function App() {
   const getTest = async()=>{
     try {
           const response = await axios.get(`${API_URL}/get`)
-          console.log('Update successful:', response.message);
+          console.log('Update successful:', response.data);
       } catch(error) {
           console.log("error updating getTest data: ", error)
       }
