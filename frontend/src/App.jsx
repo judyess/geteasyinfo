@@ -57,7 +57,7 @@ export default function App() {
   async function pressButton() {
     console.log("axios pressed")
     //const res = await axios.post(`${API_URL}/do`);
-    const res = await fetch(`${API_URL}/do`, { method: "POST" })
+    const res = await fetch(`${API_URL}/do`)
     const data = await res.json();
     console.log(data.message);
   }
@@ -66,7 +66,7 @@ export default function App() {
     console.log("REACT testfn says hi")
     console.log(newIncData)
     const response = await axios.post(`${API_URL}/dropdown/${newIncData}`, newIncData)
-    .then((res)=> setOption(res.data))
+    .then((res)=> setOption(response.data))
     .catch((err)=>console.log("error updating data: ", error))
 } 
     
