@@ -65,8 +65,9 @@ export default function App() {
   const dropdown = async(newIncData)=>{
     console.log("REACT dropdown says: ", newIncData)
     const response = await axios.put(`${API_URL}/dropdown/${newIncData}`, newIncData)
-    .then((res)=> {setOption(response); console.log("Server says: ", response.data, "Inc. data: ", newIncData)})
-    .catch((err)=>console.log("error updating dropdown data: ", err, "SERVER says: ", response.data))
+    .then((res)=> {setOption(response); console.log("Option set with: ", response)})
+    .catch((err)=>console.log("error updating dropdown data: ", err, "SERVER says: ", response.data));
+    console.log("Server says: ", response.data, "Inc. data: ", newIncData)
 } 
 
   const getTest = async()=>{
