@@ -57,13 +57,13 @@ export default function App() {
   async function pressButton() {
     console.log("axios pressed")
     //const res = await axios.post(`${API_URL}/do`);
-    const res=await fetch(`${API_URL}/do`, {method: "POST"})
+    const res=await fetch(`${API_URL}/do`, {method: "GET"})
     const data = await res.json();
     console.log(data.message);
   }
 
   const testfn = async(newIncData)=>{
-    console.log("testfn with URL addon says hi")
+    console.log("REACT testfn says hi")
     console.log(newIncData)
     const response = await axios.post(`${API_URL}/dropdown/${newIncData}`, newIncData)
     .then((res)=> setOption(res.data))

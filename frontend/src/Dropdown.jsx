@@ -58,23 +58,20 @@ const states = {
 export default function Dropdown({func}){
     const [stateData, setStateData] = useState(states);
     const [choice, setChoice] = useState("");
-
-    function dropdown_handler(e){
+    function dropdown_handler(e, value){
         e.preventDefault()
-        setChoice(e.target.value)
-        console.log(choice)
+        setChoice(value)
+        console.log(e.target.value)
+        console.log(target)
     }
-    function callback(e){
-        e.preventDefault()
-        console.log(choice)
-        console.log(e)
+    function ready(){
         func(choice)
     }
     return(
         <div>
             <h1>Prop Header</h1>
-            <form onSubmit={callback}>
-            <select value={choice} onChange={(e)=>dropdown_handler}>
+            <form onSubmit={ready}>
+            <select value={choice} onChange={(e)=>dropdown_handler(e, value)}>
                 <ul>
                     <li>
                     {Object.entries(states).map(([key, value])=> (
