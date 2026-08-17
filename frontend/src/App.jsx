@@ -56,7 +56,8 @@ export default function App() {
 
   async function pressButton() {
     console.log("axios pressed")
-    const res = await axios.post(`${API_URL}/do`);
+    //const res = await axios.post(`${API_URL}/do`);
+    const res=await fetch(`${API_URL}/do`, {method: "POST"})
     const data = await res.json();
     console.log(data.message);
   }
@@ -70,14 +71,14 @@ export default function App() {
 } 
     }
 
-    const getTest = async()=>{
-      try {
-            const response = await axios.post(`${API_URL}/dropdown`)
-            console.log('Update successful:', response.message);
-        } catch(error) {
-            console.log("error updating data: ", error)
-        }
-    }
+  const getTest = async()=>{
+    try {
+          const response = await axios.post(`${API_URL}/dropdown`)
+          console.log('Update successful:', response.message);
+      } catch(error) {
+          console.log("error updating data: ", error)
+      }
+  }
   return (
   <div>
     <Menu />
@@ -94,7 +95,6 @@ export default function App() {
         />
         <button type="submit">Add</button>
       </form>
-
       {loading ? (
         <p>Loading...</p>
       ) : todos.length === 0 ? (
@@ -121,4 +121,3 @@ export default function App() {
     </div>
   </div>
   );
-}
