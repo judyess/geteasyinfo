@@ -69,7 +69,7 @@ export default function App() {
     .then((res)=> setOption(res.data))
     .catch((err)=>console.log("error updating data: ", error))
 } 
-    }
+    
 
   const getTest = async()=>{
     try {
@@ -121,3 +121,4 @@ export default function App() {
     </div>
   </div>
   );
+}

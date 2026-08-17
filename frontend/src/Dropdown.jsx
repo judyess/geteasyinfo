@@ -58,15 +58,16 @@ const states = {
 export default function Dropdown({func}){
     const [stateData, setStateData] = useState(states);
     const [choice, setChoice] = useState("");
+
     const dropdown_handler = (e)=>{
         const selectedValue = e.target.value; 
         setChoice(selectedValue);
-        console.log(e.target.value)
+        console.log(e.target.value);
         console.log("Selected option:", selectedValue);
     }
 
     function ready(){
-        func(choice)
+        func(choice);
     }
 
     return(
