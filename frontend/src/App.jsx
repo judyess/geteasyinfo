@@ -53,30 +53,31 @@ export default function App() {
     await fetch(`${API_URL}/api/todos/${id}`, { method: "DELETE" });
     setTodos(todos.filter((t) => t.id !== id));
   }
+    // receives data from child fine, receives server response fine ^_^
+  const dropdown = async(newIncData)=>{
+    console.log("REACT dropdown says: ", newIncData)
+    const response = await axios.put(`${API_URL}/dropdown/${newIncData}`, newIncData)
+    .then((res)=> {console.log("Server response: ", res.data)})
+    .catch((err)=>console.log("error updating dropdown data: ", err));
+} 
+
 
   async function serverMsg() {
     console.log("axios pressed")
-    //const res = await axios.post(`${API_URL}/do`);
     const res = await fetch(`${API_URL}/msg`)
     const data = await res.json();
     console.log(data.message);
 }
-  // receives data from child fine, receives server response fine ^_^
-  const dropdown = async(newIncData)=>{
-    console.log("REACT dropdown says: ", newIncData)
-    const response = await axios.put(`${API_URL}/dropdown/${newIncData}`, newIncData)
-    .then((res)=> {setOption(res.data); console.log("Option set with: ", res.data)})
-    .catch((err)=>console.log("error updating dropdown data: ", err));
-} 
 
-  const getTest = async()=>{
+  const otherServerMsg = async()=>{
     try {
-          const response = await axios.get(`${API_URL}/get`)
+          const response = await axios.get(`${API_URL}/msg2`)
           console.log('Test Update successful:', response.data);
       } catch(error) {
           console.log("error updating getTest data: ", error)
       }
 }
+
   const getOption = async() => {
     console.log(option)
 }

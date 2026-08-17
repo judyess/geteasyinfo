@@ -78,6 +78,8 @@ export default function Dropdown({func}){
             <form onSubmit={ready}>
             <select value={choice} onChange={dropdown_handler}>
                 <ul>
+                    <li><option>--</option>
+                    </li>
                     <li>
                     {Object.entries(states).map(([key, value])=> (
                         <option key={key}>{value}</option>

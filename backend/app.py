@@ -103,15 +103,16 @@ def delete_todo(todo_id):
 def serverMsg():
     return jsonify({"message": "a literal string"})
 
-@app.route("/get", methods=["GET"])
-def receive_dropdown_option():
+@app.route("/msg2", methods=["GET"])
+def serverMsgAxios():
     #data = request.get_json(force=True)
     return jsonify({ "message": "am i message or data?" })
 
-@app.route("/dropdown/<string:msg>", methods=["PUT"])
-def receive_dropdown_option2(msg):
-    #data = request.get_json(force=True)
-    return jsonify({ "message": f"server received: {msg}" })
+@app.route("/dropdown/<string:incData>", methods=["PUT"])
+def receive_dropdown_option2(incData):
+    data = incData
+    print(data)
+    return jsonify({ "message": f"server received: {incData}" })
 
 
 
