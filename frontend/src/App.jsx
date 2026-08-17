@@ -92,7 +92,6 @@ export default function App() {
       <form onSubmit={addTodo} className="add-form">
         <button onClick={serverMsg}>serverMsg</button>
         <button onClick={getTest}>getTest </button>
-        <button onClick={getJSON}>getJSON</button>
         <input
           value={text}
           onChange={(e) => setText(e.target.value)}
