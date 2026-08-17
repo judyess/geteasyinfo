@@ -105,7 +105,7 @@ def dosomething():
     return jsonify({"message": "messaged received"}) # message changed to string from var
 
 @app.route("/dropdown", methods=["POST"])
-def receive_dropdown_option(choice):
+def receive_dropdown_option():
     data = request.get_json(force=True)
     return jsonify(data)
 

@@ -56,22 +56,18 @@ export default function App() {
 
   async function pressButton() {
     console.log("axios pressed")
-    const res = await axios.get(`${API_URL}/do`);
+    const res = await axios.post(`${API_URL}/do`);
     const data = await res.json();
     console.log(data.message);
   }
 
   const testfn = async(newIncData)=>{
     console.log("testfn with URL addon says hi")
-        try {
-            const response = await axios.post(`${API_URL}/dropdown/${newIncData}`, newIncData)
-            console.log('Update successful:', response.data);
-            console.log(response)
-            setOption(response)
-            console.log(option)
-        } catch(error) {
-            console.log("error updating data: ", error)
-        }
+    console.log(newIncData)
+    const response = await axios.post(`${API_URL}/dropdown/${newIncData}`, newIncData)
+    .then((res)=> setOption(res.data))
+    .catch((err)=>console.log("error updating data: ", error))
+} 
     }
 
     const getTest = async()=>{
