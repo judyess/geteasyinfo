@@ -97,7 +97,7 @@ def delete_todo(todo_id):
     conn.close()
     return "", 204
 
-@app.route("/do", methods=["POST"])
+@app.route("/do", methods=["GET"])
 def dosomething():
     #data = request.get_json(force=True)
     return jsonify({"message": "hi"}) # message changed to string from var
