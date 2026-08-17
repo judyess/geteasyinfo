@@ -106,16 +106,14 @@ def getdb():
 
 @app.route("/msg", methods=["GET"])
 def serverMsg():
-    data = "servers data message"
-    #data = request.get_json(force=True)
-    return jsonify({"message": data}) # message changed to string from var
+    return jsonify({"message": "a literal string"})
 
 @app.route("/dropdown", methods=["POST"])
 def receive_dropdown_option():
     data = request.get_json(force=True)
     return jsonify({ "message": data })
 
-@app.route("/dropdown/<str:msg>", methods=["GET"])
+@app.route("/dropdown/<str:msg>", methods=["PUT"])
 def receive_dropdown_option2():
     data = request.get_json(force=True)
     return jsonify({ "message": data })
