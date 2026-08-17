@@ -64,6 +64,7 @@ export default function Dropdown({func}){
         setChoice(selectedValue);
         console.log("handler")
         console.log(e.target.value);
+        console.log(choice)
         console.log("Selected option:", selectedValue);
     }
 
@@ -76,7 +77,7 @@ export default function Dropdown({func}){
         <div>
             <h1>Prop Header</h1>
             <form onSubmit={ready}>
-            <select value={choice} onChange={(e)=>dropdown_handler}>
+            <select value={choice} onChange={dropdown_handler}>
                 <ul>
                     <li>
                     {Object.entries(states).map(([key, value])=> (
