@@ -66,7 +66,7 @@ export default function App() {
   const dropdown = async(newIncData)=>{
     console.log("REACT dropdown says hi")
     console.log(newIncData)
-    const response = await axios.post(`${API_URL}/dropdown/${newIncData}`, newIncData)
+    const response = await axios.get(`${API_URL}/dropdown/${newIncData}`, newIncData)
     .then((res)=> setOption(response.data))
     .catch((err)=>console.log("error updating dropdown data: ", err, "option: ", {option}))
 } 

@@ -113,12 +113,12 @@ def serverMsg():
 @app.route("/dropdown", methods=["POST"])
 def receive_dropdown_option():
     data = request.get_json(force=True)
-    return jsonify(data)
+    return jsonify({ "message": data })
 
-@app.route("/dropdown/<str:msg>", methods=["POST"])
-def receive_dropdown_option():
+@app.route("/dropdown/<str:msg>", methods=["GET"])
+def receive_dropdown_option2():
     data = request.get_json(force=True)
-    return jsonify(data)
+    return jsonify({ "message": data })
 
 
 
