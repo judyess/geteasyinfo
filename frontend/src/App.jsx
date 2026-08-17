@@ -67,7 +67,7 @@ export default function App() {
     console.log(newIncData)
     const response = await axios.put(`${API_URL}/dropdown/${newIncData}`, newIncData)
     .then((res)=> setOption(response.data))
-    .catch((err)=>console.log("error updating dropdown data: ", err, "option: ", {option}))
+    .catch((err)=>console.log("error updating dropdown data: ", err, "option: ", response.data))
 } 
 
   const getTest = async()=>{
