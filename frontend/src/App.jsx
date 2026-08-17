@@ -62,12 +62,13 @@ export default function App() {
     console.log(data.message);
   }
 
+  // receives data from child fine, but fails to connect to server
   const testfn = async(newIncData)=>{
     console.log("REACT testfn says hi")
     console.log(newIncData)
     const response = await axios.post(`${API_URL}/dropdown/${newIncData}`, newIncData)
     .then((res)=> setOption(response.data))
-    .catch((err)=>console.log("error updating data: ", error))
+    .catch((err)=>console.log("error updating testfn data: ", error))
 } 
     
 
@@ -76,7 +77,7 @@ export default function App() {
           const response = await axios.post(`${API_URL}/dropdown`)
           console.log('Update successful:', response.message);
       } catch(error) {
-          console.log("error updating data: ", error)
+          console.log("error updating getTest data: ", error)
       }
   }
   return (
