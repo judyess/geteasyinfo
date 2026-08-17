@@ -98,11 +98,6 @@ def delete_todo(todo_id):
     conn.close()
     return "", 204
 
-@app.route("/", methods=['GET'])
-def getdb():
-    with open('db.json', 'r') as json_file:
-        data = json.load(json_file)
-    return jsonify({ "message": data })
 
 @app.route("/msg", methods=["GET"])
 def serverMsg():
