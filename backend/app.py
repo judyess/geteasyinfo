@@ -23,8 +23,8 @@ app = Flask(__name__)
 # Left unset, this allows any origin -- fine for local dev, not for prod.
 CORS(app, origins=os.environ.get("FRONTEND_URL", "*")) # ME: this is set in Render tool. So if Render runs the app, it will use that URL.
 DATABASE_URL = os.environ["DATABASE_URL"]  # fails loudly if not set
-
 print(DATABASE_URL)
+
 def get_db():
     # RealDictCursor makes rows come back as dicts, like sqlite3.Row did
     return psycopg2.connect(DATABASE_URL, cursor_factory=RealDictCursor)
@@ -98,20 +98,24 @@ def delete_todo(todo_id):
     conn.close()
     return "", 204
 
-
-
 @app.route("/", methods=['GET'])
 def getdb():
     with open('db.json', 'r') as json_file:
         data = json.load(json_file)
     return jsonify(data)
 
-@app.route("/do", methods=["GET"])
+@app.route("/msg", methods=["GET"])
 def serverMsg():
+    data = "servers data message"
     #data = request.get_json(force=True)
-    return jsonify({"message": "hi"}) # message changed to string from var
+    return jsonify({"message": data}) # message changed to string from var
 
 @app.route("/dropdown", methods=["POST"])
+def receive_dropdown_option():
+    data = request.get_json(force=True)
+    return jsonify(data)
+
+@app.route("/dropdown/<str:msg>", methods=["POST"])
 def receive_dropdown_option():
     data = request.get_json(force=True)
     return jsonify(data)

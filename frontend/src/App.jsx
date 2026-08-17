@@ -57,7 +57,7 @@ export default function App() {
   async function serverMsg() {
     console.log("axios pressed")
     //const res = await axios.post(`${API_URL}/do`);
-    const res = await fetch(`${API_URL}/do`)
+    const res = await fetch(`${API_URL}/msg`)
     const data = await res.json();
     console.log(data.message);
   }
@@ -77,7 +77,6 @@ export default function App() {
     const data = await res.json();
     console.log(data.message);
   }
-  
 
   const getTest = async()=>{
     try {
@@ -94,7 +93,7 @@ export default function App() {
     <div className="app">
       <h1>Todo List</h1>
       <form onSubmit={addTodo} className="add-form">
-        <button onClick={serverMsg}>press</button>
+        <button onClick={serverMsg}>serverMsg</button>
         <button onClick={getTest}>getTest </button>
         <button onClick={getJSON}>getJSON</button>
         <input
