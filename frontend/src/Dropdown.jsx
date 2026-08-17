@@ -62,11 +62,13 @@ export default function Dropdown({func}){
     const dropdown_handler = (e)=>{
         const selectedValue = e.target.value; 
         setChoice(selectedValue);
+        console.log("handler")
         console.log(e.target.value);
         console.log("Selected option:", selectedValue);
     }
 
-    function ready(){
+    function ready(e){
+        e.preventDefault();
         func(choice);
     }
 
