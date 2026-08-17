@@ -114,9 +114,9 @@ def receive_dropdown_option():
     return jsonify({ "message": data })
 
 @app.route("/dropdown/<str:msg>", methods=["PUT"])
-def receive_dropdown_option2():
+def receive_dropdown_option2(msg):
     data = request.get_json(force=True)
-    return jsonify({ "message": data })
+    return jsonify({ "message": msg })
 
 
 
