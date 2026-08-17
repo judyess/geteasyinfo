@@ -63,12 +63,12 @@ export default function App() {
   }
 
   // receives data from child fine, but fails to connect to server
-  const testfn = async(newIncData)=>{
-    console.log("REACT testfn says hi")
+  const dropdown = async(newIncData)=>{
+    console.log("REACT dropdown says hi")
     console.log(newIncData)
     const response = await axios.post(`${API_URL}/dropdown/${newIncData}`, newIncData)
     .then((res)=> setOption(response.data))
-    .catch((err)=>console.log("error updating testfn data: ", error))
+    .catch((err)=>console.log("error updating dropdown data: ", err, "option: ", {option}))
 } 
   async function getJSON() {
     console.log("axios pressed")
@@ -89,7 +89,7 @@ export default function App() {
   return (
   <div>
     <Menu />
-    <Dropdown func={testfn}/>  {/* swapped with handle dropdown function*/}
+    <Dropdown func={dropdown}/>  {/* swapped with handle dropdown function*/}
     <div className="app">
       <h1>Todo List</h1>
       <form onSubmit={addTodo} className="add-form">
