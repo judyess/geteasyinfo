@@ -85,13 +85,13 @@ export default function App() {
   return (
   <div>
     <Menu />
-    <Dropdown func={dropdown}/>  {/* swapped with handle dropdown function*/}
+    <Dropdown func={dropdown}/>
     <div className="app">
-      <button onClick={getOption} >option</button>
+      <button onClick={getOption}>option</button>
       <h1>Todo List</h1>
       <form onSubmit={addTodo} className="add-form">
         <button onClick={serverMsg}>serverMsg</button>
-        <button onClick={getTest}>getTest </button>
+        <button onClick={otherServerMsg}>otherServerMsg</button>
         <input
           value={text}
           onChange={(e) => setText(e.target.value)}
