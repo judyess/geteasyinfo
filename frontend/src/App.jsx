@@ -63,16 +63,15 @@ export default function App() {
 }
   // receives data from child fine, but fails to connect to server
   const dropdown = async(newIncData)=>{
-    console.log("REACT dropdown says hi")
-    console.log(newIncData)
+    console.log("REACT dropdown says: ", newIncData)
     const response = await axios.put(`${API_URL}/dropdown/${newIncData}`, newIncData)
     .then((res)=> setOption(response.data))
-    .catch((err)=>console.log("error updating dropdown data: ", err, "option: ", response.data))
+    .catch((err)=>console.log("error updating dropdown data: ", err, "SERVER says: ", response.data))
 } 
 
   const getTest = async()=>{
     try {
-          const response = await axios.post(`${API_URL}/get`)
+          const response = await axios.get(`${API_URL}/get`)
           console.log('Update successful:', response.message);
       } catch(error) {
           console.log("error updating getTest data: ", error)
