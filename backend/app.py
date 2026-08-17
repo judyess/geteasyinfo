@@ -12,6 +12,7 @@ from flask import Flask, jsonify, request
 from flask_cors import CORS
 import psycopg2 # lets you run SQL queries in postgres
 from psycopg2.extras import RealDictCursor
+import json
 
 
 app = Flask(__name__)
@@ -97,8 +98,16 @@ def delete_todo(todo_id):
     conn.close()
     return "", 204
 
+
+
+@app.route("/", methods=['GET'])
+def getdb():
+    with open('db.json', 'r') as json_file:
+        data = json.load(json_file)
+    return jsonify(data)
+
 @app.route("/do", methods=["GET"])
-def dosomething():
+def serverMsg():
     #data = request.get_json(force=True)
     return jsonify({"message": "hi"}) # message changed to string from var
 
@@ -106,6 +115,8 @@ def dosomething():
 def receive_dropdown_option():
     data = request.get_json(force=True)
     return jsonify(data)
+
+
 
 
 init_db()

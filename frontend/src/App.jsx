@@ -54,7 +54,7 @@ export default function App() {
     setTodos(todos.filter((t) => t.id !== id));
   }
 
-  async function pressButton() {
+  async function serverMsg() {
     console.log("axios pressed")
     //const res = await axios.post(`${API_URL}/do`);
     const res = await fetch(`${API_URL}/do`)
@@ -70,7 +70,14 @@ export default function App() {
     .then((res)=> setOption(response.data))
     .catch((err)=>console.log("error updating testfn data: ", error))
 } 
-    
+  async function getJSON() {
+    console.log("axios pressed")
+    //const res = await axios.post(`${API_URL}/do`);
+    const res = await fetch(`${API_URL}/`)
+    const data = await res.json();
+    console.log(data.message);
+  }
+  
 
   const getTest = async()=>{
     try {
@@ -87,8 +94,9 @@ export default function App() {
     <div className="app">
       <h1>Todo List</h1>
       <form onSubmit={addTodo} className="add-form">
-        <button onClick={pressButton}>press</button>
+        <button onClick={serverMsg}>press</button>
         <button onClick={getTest}>getTest </button>
+        <button onClick={getJSON}>getJSON</button>
         <input
           value={text}
           onChange={(e) => setText(e.target.value)}
