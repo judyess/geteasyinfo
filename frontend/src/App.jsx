@@ -70,16 +70,11 @@ export default function App() {
       }
 }
 
-  const getOption = async() => {
-    console.log(option)
-}
-
   return (
   <div>
     <Menu />
     <getDropdown func={getDropdown}/>
     <div className="app">
-      <button onClick={getOption}>option</button>
       <h1>Todo List</h1>
       <form onSubmit={addTodo} className="add-form">
         <button onClick={toServer}>toServer</button>
