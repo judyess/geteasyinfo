@@ -67,7 +67,12 @@ export default function Dropdown({func}){
     function send_back_to_caller(e){
         e.preventDefault();
         console.log(choice);
-        func(choice);
+        if (choice != ""){
+            func(choice);
+        }
+        else{
+            console.log("no dropdown data")
+        }
     }
 
     return(
