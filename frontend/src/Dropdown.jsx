@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import Menu from "./Menu.jsx"
 const API_URL = import.meta.env.VITE_API_URL || "";
 
+
 const states = {
   "Alabama": "AL",
   "Alaska": "AK",
@@ -54,9 +55,10 @@ const states = {
   "Wisconsin": "WI",
   "Wyoming": "WY"
 }
+  
 
 export default function Dropdown({func}){
-    const [stateData, setStateData] = useState(states);
+    //const [states, setStateData] = useState(states);
     const [choice, setChoice] = useState("");
 
     const dropdown_handler = (e)=>{

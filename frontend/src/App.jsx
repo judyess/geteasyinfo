@@ -61,7 +61,7 @@ export default function App() {
     .catch((err)=>console.log("error updating getDropdown data: ", err));
 } 
 
-  const toServer = async()=>{
+  const fromServer = async()=>{
     try {
           const response = await axios.get(`${API_URL}/msg`)
           console.log('Test Update successful:', response.data);
@@ -76,7 +76,7 @@ export default function App() {
     <div className="app">
       <h1>Todo List</h1>
       <form onSubmit={addTodo} className="add-form">
-        <button onClick={toServer}>toServer</button>
+        <button onClick={fromServer}>Say Hi</button>
         <input
           value={text}
           onChange={(e) => setText(e.target.value)}
