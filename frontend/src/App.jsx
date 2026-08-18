@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import getDropdown from "./getDropdown"
+import Dropdown from "./Dropdown"
 import Menu from "./Menu"
 import axios from 'axios'
 // In local dev this is empty, so fetch("/api/...") stays relative and
