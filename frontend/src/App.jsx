@@ -72,7 +72,6 @@ export default function App() {
 
   return (
   <div>
-    <Menu />
     <getDropdown func={getDropdown}/>
     <div className="app">
       <h1>Todo List</h1>

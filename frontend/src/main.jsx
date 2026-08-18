@@ -8,6 +8,7 @@ import "./App.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <BrowserRouter>
+  <Menu />
     <Routes>
       <Route path="/" element={<App />} />
       <Route path="/dropdown" element={<Dropdown />} />
