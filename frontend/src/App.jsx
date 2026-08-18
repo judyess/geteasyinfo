@@ -56,7 +56,7 @@ export default function App() {
     // receives data from child fine, receives server response fine ^_^
   const getDropdown = async(newIncData)=>{
     console.log("REACT getDropdown says: ", newIncData)
-    const response = await axios.put(`${API_URL}/getDropdown/${newIncData}`, newIncData)
+    const response = await axios.put(`${API_URL}/dropdown/${newIncData}`, newIncData)
     .then((res)=> {console.log("Server response: ", res.data)})
     .catch((err)=>console.log("error updating getDropdown data: ", err));
 } 
