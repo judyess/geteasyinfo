@@ -17,9 +17,10 @@ body {
   border-radius: 12px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
 }
-
-.main-menu {
-  color: black
+.main-links li {
+    display: inline;
+    margin-right: 5%;
+    font-size: 1.2em;
 }
 .main-links {
     width: 95%;

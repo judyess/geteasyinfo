@@ -10,8 +10,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 <BrowserRouter>
   <Menu />
     <Routes>
-      <Route className="main-menu" path="/" element={<App />} />
-      <Route className="main-menu" path="/dropdown" element={<Dropdown />} />
+      <Route path="/" element={<App />} />
+      <Route path="/dropdown" element={<Dropdown />} />
     </Routes>
 </BrowserRouter>
 );
