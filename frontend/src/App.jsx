@@ -82,7 +82,6 @@ export default function App() {
       <button onClick={getOption}>option</button>
       <h1>Todo List</h1>
       <form onSubmit={addTodo} className="add-form">
-        <button onClick={serverMsg}>serverMsg</button>
         <button onClick={toServer}>toServer</button>
         <input
           value={text}
