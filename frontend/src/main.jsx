@@ -7,17 +7,11 @@ import Menu from "./Menu.jsx";
 import "./App.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-
-  <React.StrictMode>
-    <Menu />
-    <App />
-
-  <BrowserRouter>
+<BrowserRouter>
   <Menu />
     <Routes>
       <Route path="/" element={<App />} />
       <Route path="/dropdown" element={<Dropdown />} />
     </Routes>
-  </BrowserRouter>
-  </React.StrictMode>
+</BrowserRouter>
 );
