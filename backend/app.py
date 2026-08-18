@@ -2,7 +2,7 @@
 Flask backend using Postgres instead of SQLite.
 Requires a running Postgres server and a DATABASE_URL env var, e.g.:
 
-  export DATABASE_URL="postgresql://user:password@localhost:5432/itemdb"
+  export DATABASE_URL="postgresql://user:password@localhost:5432/gei"
 
 Run with: python app.py
 Server starts on http://localhost:5000
