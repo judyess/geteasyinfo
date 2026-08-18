@@ -58,7 +58,6 @@ const states = {
   
 
 export default function Dropdown({func}){
-    //const [states, setStateData] = useState(states);
     const [choice, setChoice] = useState("");
 
     const dropdown_handler = (e)=>{
@@ -77,7 +76,7 @@ export default function Dropdown({func}){
     return(
         <div>
             <h1>Prop Header</h1>
-            <form onSubmit={send_back_to_caller}>
+            <form onSubmit={send_back_to_caller((e)=>e.target.value)}>
             <select value={choice} onChange={dropdown_handler}>
                 <ul>
                     <li><option>--</option>

@@ -111,8 +111,6 @@ def fromClient(incData):
     return jsonify({ "message": f"server received: {incData}" })
 
 
-
-
 init_db()
 
 if __name__ == "__main__":

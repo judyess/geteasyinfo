@@ -53,13 +53,7 @@ export default function App() {
     await fetch(`${API_URL}/api/todos/${id}`, { method: "DELETE" });
     setTodos(todos.filter((t) => t.id !== id));
   }
-    // receives data from child fine, receives server response fine ^_^
-  const getDropdown = async(newIncData)=>{
-    console.log("REACT getDropdown says: ", newIncData)
-    const response = await axios.put(`${API_URL}/dropdown/${newIncData}`, newIncData)
-    .then((res)=> {console.log("Server response: ", res.data)})
-    .catch((err)=>console.log("error updating getDropdown data: ", err));
-} 
+
 
   const fromServer = async()=>{
     try {
@@ -69,12 +63,19 @@ export default function App() {
           console.log("error updating getTest data: ", error)
       }
 }
+      // receives data from child fine, receives server response fine ^_^
+  const getDropdown = async(newIncData)=>{
+    console.log("REACT getDropdown says: ", newIncData)
+    const response = await axios.put(`${API_URL}/dropdown/${newIncData}`, newIncData)
+    .then((res)=> {console.log("Server response: ", res.data)})
+    .catch((err)=>console.log("error updating getDropdown data: ", err));
+} 
 
   return (
   <div>
-    <getDropdown func={getDropdown}/>
+    <Dropdown func={getDropdown}/>
     <div className="app">
-      <h1>Todo List</h1>
+      <h1>Search</h1>
       <form onSubmit={addTodo} className="add-form">
         <button onClick={fromServer}>Say Hi</button>
         <input
