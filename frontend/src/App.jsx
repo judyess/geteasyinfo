@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import Dropdown from "./Dropdown"
-import Menu from "./Menu"
 import axios from 'axios'
 // In local dev this is empty, so fetch("/api/...") stays relative and
 // Vite's proxy (vite.config.js) forwards it to the Flask dev server.
@@ -24,7 +23,7 @@ export default function App() {
     const data = await res.json();
     setTodos(data);
     setLoading(false);
-  }
+}
 
   async function addTodo(e) {
     e.preventDefault();
@@ -37,7 +36,7 @@ export default function App() {
     const newTodo = await res.json();
     setTodos([newTodo, ...todos]);
     setText("");
-  }
+}
 
   async function toggleDone(todo) {
     const res = await fetch(`${API_URL}/api/todos/${todo.id}`, {
@@ -47,13 +46,12 @@ export default function App() {
     });
     const updated = await res.json();
     setTodos(todos.map((t) => (t.id === updated.id ? updated : t)));
-  }
+}
 
   async function removeTodo(id) {
     await fetch(`${API_URL}/api/todos/${id}`, { method: "DELETE" });
     setTodos(todos.filter((t) => t.id !== id));
-  }
-
+}
 
   const fromServer = async()=>{
     try {

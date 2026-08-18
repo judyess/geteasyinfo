@@ -12,8 +12,6 @@ from flask import Flask, jsonify, request
 from flask_cors import CORS
 import psycopg2 # lets you run SQL queries in postgres
 from psycopg2.extras import RealDictCursor
-import json
-
 
 app = Flask(__name__)
 

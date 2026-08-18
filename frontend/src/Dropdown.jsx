@@ -1,7 +1,5 @@
 import React, {useState, useEffect} from "react";
-import Menu from "./Menu.jsx"
 const API_URL = import.meta.env.VITE_API_URL || "";
-
 
 const states = {
   "Alabama": "AL",
