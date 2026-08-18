@@ -8,49 +8,49 @@ import axios from 'axios'
 const API_URL = import.meta.env.VITE_API_URL || "";
 
 export default function App() {
-  const [todos, setTodos] = useState([]);
+  const [dataItems, setDataItems] = useState([]);
   const [text, setText] = useState("");
   const [loading, setLoading] = useState(true);
   const [option, setOption] = useState("")
  
   useEffect(() => {
-    fetchTodos();
+    fetchServer();
   }, []);
 
-  async function fetchTodos() {
+  async function fetchServer() {
     setLoading(true);
-    const res = await fetch(`${API_URL}/api/todos`);
+    const res = await fetch(`${API_URL}/api/gei`);
     const data = await res.json();
-    setTodos(data);
+    setDataItems(data);
     setLoading(false);
 }
 
-  async function addTodo(e) {
+  async function addItem(e) {
     e.preventDefault();
     if (!text.trim()) return;
-    const res = await fetch(`${API_URL}/api/todos`, {
+    const res = await fetch(`${API_URL}/api/gei`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ text }),
     });
-    const newTodo = await res.json();
-    setTodos([newTodo, ...todos]);
+    const newItem = await res.json();
+    setDataItems([newItem, ...dataItems]);
     setText("");
 }
 
-  async function toggleDone(todo) {
-    const res = await fetch(`${API_URL}/api/todos/${todo.id}`, {
+  async function toggleDone(item) {
+    const res = await fetch(`${API_URL}/api/gei/${item.id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ done: !todo.done }),
+      body: JSON.stringify({ done: !item.done }),
     });
     const updated = await res.json();
-    setTodos(todos.map((t) => (t.id === updated.id ? updated : t)));
+    setDataItems(dataItems.map((t) => (t.id === updated.id ? updated : t)));
 }
 
-  async function removeTodo(id) {
-    await fetch(`${API_URL}/api/todos/${id}`, { method: "DELETE" });
-    setTodos(todos.filter((t) => t.id !== id));
+  async function remove_item(id) {
+    await fetch(`${API_URL}/api/gei/${id}`, { method: "DELETE" });
+    setDataItems(dataItems.filter((t) => t.id !== id));
 }
 
   const fromServer = async()=>{
@@ -74,7 +74,7 @@ export default function App() {
     <Dropdown func={getDropdown}/>
     <div className="app">
       <h1>Search</h1>
-      <form onSubmit={addTodo} className="add-form">
+      <form onSubmit={addItem} className="add-form">
         <button onClick={fromServer}>Say Hi</button>
         <input
           value={text}
@@ -85,21 +85,21 @@ export default function App() {
       </form>
       {loading ? (
         <p>Loading...</p>
-      ) : todos.length === 0 ? (
-        <p className="empty">No todos yet — add one above.</p>
+      ) : dataItems.length === 0 ? (
+        <p className="empty">No dataItems yet — add one above.</p>
       ) : (
-        <ul className="todo-list">
-          {todos.map((todo) => (
-            <li key={todo.id} className={todo.done ? "done" : ""}>
+        <ul className="item-list">
+          {dataItems.map((item) => (
+            <li key={item.id} className={item.done ? "done" : ""}>
               <label>
                 <input
                   type="checkbox"
-                  checked={!!todo.done}
-                  onChange={() => toggleDone(todo)}
+                  checked={!!item.done}
+                  onChange={() => toggleDone(item)}
                 />
-                {todo.text}
+                {item.text}
               </label>
-              <button className="delete" onClick={() => removeTodo(todo.id)}>
+              <button className="delete" onClick={() => remove_item(item.id)}>
                 ✕
               </button>
             </li>

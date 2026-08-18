@@ -2,7 +2,7 @@
 Flask backend using Postgres instead of SQLite.
 Requires a running Postgres server and a DATABASE_URL env var, e.g.:
 
-  export DATABASE_URL="postgresql://user:password@localhost:5432/tododb"
+  export DATABASE_URL="postgresql://user:password@localhost:5432/itemdb"
 
 Run with: python app.py
 Server starts on http://localhost:5000
@@ -31,7 +31,7 @@ def init_db():
     conn = get_db()
     conn.cursor().execute(
         """
-        CREATE TABLE IF NOT EXISTS todos (
+        CREATE TABLE IF NOT EXISTS gei (
             id SERIAL PRIMARY KEY, 
             text TEXT NOT NULL,
             done BOOLEAN NOT NULL DEFAULT FALSE
@@ -41,17 +41,17 @@ def init_db():
     conn.commit()
     conn.close()
 
-@app.route("/api/todos", methods=["GET"])
-def list_todos():
+@app.route("/api/gei", methods=["GET"])
+def list_gei():
     conn = get_db()
     cur = conn.cursor()
-    cur.execute("SELECT * FROM todos ORDER BY id DESC")
+    cur.execute("SELECT * FROM gei ORDER BY id DESC")
     rows = cur.fetchall()
     conn.close()
     return jsonify(rows)
 
-@app.route("/api/todos", methods=["POST"])
-def create_todo():
+@app.route("/api/gei", methods=["POST"])
+def create_item():
     data = request.get_json(force=True)
     text = (data.get("text") or "").strip()
     if not text:
@@ -60,18 +60,18 @@ def create_todo():
     conn = get_db()
     cur = conn.cursor()
     # %s placeholders instead of sqlite's ? -- main syntax difference from SQLite
-    cur.execute("INSERT INTO todos (text, done) VALUES (%s, FALSE) RETURNING *", (text,))
+    cur.execute("INSERT INTO gei (text, done) VALUES (%s, FALSE) RETURNING *", (text,))
     row = cur.fetchone()
     conn.commit()
     conn.close()
     return jsonify(row), 201
 
-@app.route("/api/todos/<int:todo_id>", methods=["PATCH"])
-def update_todo(todo_id):
+@app.route("/api/gei/<int:item_id>", methods=["PATCH"])
+def update_item(item_id):
     data = request.get_json(force=True)
     conn = get_db()
     cur = conn.cursor()
-    cur.execute("SELECT * FROM todos WHERE id = %s", (todo_id,))
+    cur.execute("SELECT * FROM gei WHERE id = %s", (item_id,))
     row = cur.fetchone()
     if row is None:
         conn.close()
@@ -80,18 +80,19 @@ def update_todo(todo_id):
     done = data.get("done", row["done"])
     text = data.get("text", row["text"])
     cur.execute(
-        "UPDATE todos SET text = %s, done = %s WHERE id = %s RETURNING *",
-        (text, bool(done), todo_id),
+        "UPDATE gei SET text = %s, done = %s WHERE id = %s RETURNING *",
+        (text, bool(done), item_id),
     )
     updated = cur.fetchone()
     conn.commit()
     conn.close()
     return jsonify(updated)
 
-@app.route("/api/todos/<int:todo_id>", methods=["DELETE"])
-def delete_todo(todo_id):
+#delete_item
+@app.route("/api/gei/<int:item_id>", methods=["DELETE"])
+def delete_by_id(item_id):
     conn = get_db()
-    conn.cursor().execute("DELETE FROM todos WHERE id = %s", (todo_id,))
+    conn.cursor().execute("DELETE FROM gei WHERE id = %s", (item_id,))
     conn.commit()
     conn.close()
     return "", 204
@@ -108,7 +109,9 @@ def fromClient(incData):
     print(data)
     return jsonify({ "message": f"server received: {incData}" })
 
-
+@app.route("/about")
+def about():
+    return
 init_db()
 
 if __name__ == "__main__":
