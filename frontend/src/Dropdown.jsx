@@ -72,7 +72,7 @@ export default function Dropdown({func}){
     return(
         <div>
             <h1>Prop Header</h1>
-            <form onSubmit={send_back_to_caller=((e)=>{e.preventDefault()})}>
+            <form onSubmit={send_back_to_caller=(e)=>{e.preventDefault()}}>
             <select value={choice} onChange={dropdown_handler}>
                 <ul>
                     <li><option>--</option>
