@@ -101,6 +101,7 @@ def delete_todo(todo_id):
 @app.route("/msg", methods=["GET"])
 def toClient():
     message = "Hello, Earth"
+    jsonify(message)
     return jsonify({ "message": f"{message}" })
 
 @app.route("/dropdown/<string:incData>", methods=["PUT"])
