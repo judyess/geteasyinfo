@@ -64,15 +64,13 @@ export default function Dropdown({func}){
         console.log("Selected option:", selectedValue);
     }
 
-    function send_back_to_caller(e){
-        e.preventDefault();
+    function send_back_to_caller(){
         console.log(choice);
         func(choice);
     }
 
     return(
         <div>
-            <h1>Prop Header</h1>
             <form onSubmit={(e) => send_back_to_caller(e.target.value)}>
             <select value={choice} onChange={dropdown_handler}>
                 <ul>
