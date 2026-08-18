@@ -66,7 +66,7 @@ export default function Dropdown({func}){
         console.log("Selected option:", selectedValue);
     }
 
-    function ready(e){
+    function sendOption(e){
         e.preventDefault();
         console.log(choice)
         func(choice);
@@ -75,7 +75,7 @@ export default function Dropdown({func}){
     return(
         <div>
             <h1>Prop Header</h1>
-            <form onSubmit={ready}>
+            <form onSubmit={sendOption}>
             <select value={choice} onChange={dropdown_handler}>
                 <ul>
                     <li><option>--</option>

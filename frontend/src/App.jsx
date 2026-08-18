@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Dropdown from "./Dropdown"
+import getDropdown from "./getDropdown"
 import Menu from "./Menu"
 import axios from 'axios'
 // In local dev this is empty, so fetch("/api/...") stays relative and
@@ -54,24 +54,16 @@ export default function App() {
     setTodos(todos.filter((t) => t.id !== id));
   }
     // receives data from child fine, receives server response fine ^_^
-  const dropdown = async(newIncData)=>{
-    console.log("REACT dropdown says: ", newIncData)
-    const response = await axios.put(`${API_URL}/dropdown/${newIncData}`, newIncData)
+  const getDropdown = async(newIncData)=>{
+    console.log("REACT getDropdown says: ", newIncData)
+    const response = await axios.put(`${API_URL}/getDropdown/${newIncData}`, newIncData)
     .then((res)=> {console.log("Server response: ", res.data)})
-    .catch((err)=>console.log("error updating dropdown data: ", err));
+    .catch((err)=>console.log("error updating getDropdown data: ", err));
 } 
 
-
-  async function serverMsg() {
-    console.log("axios pressed")
-    const res = await fetch(`${API_URL}/msg`)
-    const data = await res.json();
-    console.log(data.message);
-}
-
-  const otherServerMsg = async()=>{
+  const toServer = async()=>{
     try {
-          const response = await axios.get(`${API_URL}/msg2`)
+          const response = await axios.get(`${API_URL}/msg`)
           console.log('Test Update successful:', response.data);
       } catch(error) {
           console.log("error updating getTest data: ", error)
@@ -85,13 +77,13 @@ export default function App() {
   return (
   <div>
     <Menu />
-    <Dropdown func={dropdown}/>
+    <getDropdown func={getDropdown}/>
     <div className="app">
       <button onClick={getOption}>option</button>
       <h1>Todo List</h1>
       <form onSubmit={addTodo} className="add-form">
         <button onClick={serverMsg}>serverMsg</button>
-        <button onClick={otherServerMsg}>otherServerMsg</button>
+        <button onClick={toServer}>toServer</button>
         <input
           value={text}
           onChange={(e) => setText(e.target.value)}
