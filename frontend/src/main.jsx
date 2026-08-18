@@ -11,6 +11,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Menu />
     <App />
+
   <BrowserRouter>
   <Menu />
     <Routes>
@@ -18,6 +19,5 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <Route path="/dropdown" element={<Dropdown />} />
     </Routes>
   </BrowserRouter>
-  *
   </React.StrictMode>
 );
