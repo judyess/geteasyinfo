@@ -64,7 +64,8 @@ export default function Dropdown({func}){
         console.log("Selected option:", selectedValue);
     }
 
-    function send_back_to_caller(){
+    function send_back_to_caller(e){
+        e.preventDefault();
         console.log(choice);
         func(choice);
     }
@@ -72,7 +73,7 @@ export default function Dropdown({func}){
     return(
         <div>
             <h1>Prop Header</h1>
-            <form onSubmit={send_back_to_caller=(e)=>{e.preventDefault()}}>
+            <form onSubmit={(e) => send_back_to_caller(e.target.value)}>
             <select value={choice} onChange={dropdown_handler}>
                 <ul>
                     <li><option>--</option>
