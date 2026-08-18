@@ -18,6 +18,9 @@ body {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
+Navlink {
+  color: black
+}
 .main-links {
     width: 95%;
     margin: 1px;
