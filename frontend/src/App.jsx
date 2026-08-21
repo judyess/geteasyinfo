@@ -109,9 +109,10 @@ export default function App() {
     </div>
   </div>
   );
-}
 
-const testList = {
+  const testList = {
   "this":"that",
   "here":"there"
 }
+}
+
