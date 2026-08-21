@@ -5,28 +5,32 @@ import re
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 
-gei_api = Flask(__name__)
+api = Flask(__name__)
 load_dotenv()
 LEGISCAN_API_KEY = os.getenv("LEGISCAN_API_KEY")
-
-STATE="NC"
-PARAMETER="sessions"
-OPERATION="getSessionList"
-ID_CHOICE="Session List"
-
-LEGISCAN_BASE_URL= f"https://api.legiscan.com/?key={LEGISCAN_API_KEY}&op={OPERATION}&state={STATE}"
+LEGISCAN_BASE_URL= f"https://api.legiscan.com/?key={KEY}&op={OP}&state={STATE}"
 
 
 
-@gei_api.route("/gei_api", methods=["GET"])
-def api_connect():
+# this connects init
+@api.route("/api/legiscan/nothere", methods=["GET"])
+def api_connect(parameter="none"):
+    response = requests.get(LEGISCAN_BASE_URL)
+    if response.status_code == 200:
+        resp = response.json()
+        print("status code 200, true")
+    return jsonify({"operations": {operations}})
+
+
+@api.route("/api/legiscan/submit", methods=["GET"])
+def get_param(parameter="none"):
     response = requests.get(LEGISCAN_BASE_URL)
     if response.status_code == 200:
         resp = response.json()
         print("status code 200, true")
 
         if resp.get("status") == "OK":
-            data = resp.get(PARAMETER, {})
+            data = resp.get(parameter, {})
             print("resp.get status OK: true")
             print(f"OUTPUT: {data}")
         else:
@@ -34,8 +38,8 @@ def api_connect():
     else:
         print(f"HTTP Request failed with status code: {response.status_code}")
     return
-
-@gei_api.route("/api/legiscan", methods=["GET"])
+    
+@api.route("/api/legiscan", methods=["GET"])
 def legiscan_proxy():
     op = request.args.get("op")
     if not op:
@@ -66,11 +70,6 @@ def get_operation(identifier_choice=""):
             return op
     return
 
-def idk():
-    # for some obj
-        # get list of parameters
-
-    return
 
 
 api_connect()
@@ -96,3 +95,4 @@ operations = [
 "getMonitorListRaw",
 "setMonitor", 
 ]
+

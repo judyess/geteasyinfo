@@ -1,56 +1,74 @@
-
 import { useEffect, useState } from "react";
 import Dropdown from "./Dropdown"
 import axios from 'axios'
-
-LEGISCAN_API = import.meta.env.LEGISCAN_API_URL || "";
-API_KEY = import.meta.env.LEGISCAN_API_KEY || "";
+const API_URL = import.meta.env.VITE_API_URL || "";
 
 export default function Search(){
     const [dataItems, setDataItems] = useState();
     const [type, setType] = useState()
     const [state, setState] = useState("")
     const [sessionID, setSessionID] = useState("")
+    const [operation, setOperation] = useState([])
+    const [opsList, setOpsList] = useState([])
 
     useEffect(()=> {
         connect_to_API();
     }, []);
+    
 
     async function connect_to_API() {
-        const res = await fetch(`${LEGISCAN_API}/search`);
+        const res = await fetch(`$api/legiscan`);
         console.log("connected")
+        const data = await res.json();
+        setOpsList(data)
 }       
 
-    const dropdown_handler = (e)=>{
-        const selectedValue = e.target.value; 
-        setChoice(selectedValue);
-        console.log("Selected option:", selectedValue);
-}
-
-    const getState = async (newIncData)=> {
+    async function getOperation(newIncData) {
         console.log("REACT getState says: ", newIncData)
         const response = await axios.put(`${API_URL}/dropdown/${newIncData}`, newIncData)
         .then((res)=> {console.log("Server response: ", res.data)})
         .catch((err)=>console.log("error updating getState data: ", err));
+        setOperation(res)
+}
+    const ops_dropdown_handler = (e)=>{
+        const user_choice = e.target.value; 
+        setOperation(user_choice);
+        console.log("Selected option:", operation);
+}
+    
+
+    const getState = async (newIncData)=> {
+        console.log("REACT getState says: ", newIncData)
+        const response = await axios.put(`${API_URL}/state/${newIncData}`, newIncData)
+        .then((res)=> {console.log("Server response: ", res.data)})
+        .catch((err)=>console.log("error updating getState data: ", err));
+        setState(res)
+}
+    const state_dropdown_handler = (e)=>{
+        const user_choice = e.target.value; 
+        setState(user_choice);
+        console.log("Selected option:", selectedValue);
 }
 
-    async function getSessionList(state) {
-    const res = await fetch(`${API_URL}/api/legiscan?op=getSessionList&state=${state}`);
-    return res.json();
-}
+    async function submitToServer() {
+        const res = await axios.put(`${API_URL}/api/legiscan/submit`, newIncData)
+        .then((res)=> {console.log("Server response: ", res.data)})
+        .catch((err)=>console.log("error updating getDropdown data: ", err));
+    }
 
-    async function getMasterList(sessionId) {
-    const res = await fetch(`${API_URL}/api/legiscan?op=getMasterList&id=${sessionId}`);
-    return res.json();
-}   
-
+    
 
     return(
         <div>
-            <label>State </label>
-                <Dropdown func={getState} dataset={states}/>
-            <label>Session ID </label>
-                <input> some data </input>
+            <form>
+                <label>Search Type </label>
+                    <Dropdown func={getOperation} dataset={opsList}/>
+                <label>State </label>
+                    <Dropdown func={getState} dataset={states}/>
+                <label>Session ID </label>
+                    <input> some data </input>
+                <button type="submit">Submit</button>
+            </form>
         </div>
     )
 
