@@ -52,9 +52,8 @@ export default function Search(){
                 <input> some data </input>
         </div>
     )
-}
 
-const states = {
+    const states = {
   "Alabama": "AL",
   "Alaska": "AK",
   "Arizona": "AZ",
@@ -106,3 +105,5 @@ const states = {
   "Wisconsin": "WI",
   "Wyoming": "WY"
 }
+}
+
