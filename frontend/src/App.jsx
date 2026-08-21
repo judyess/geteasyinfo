@@ -56,9 +56,9 @@ export default function App() {
   const fromServer = async()=>{
     try {
           const response = await axios.get(`${API_URL}/msg`)
-          console.log('Test Update successful:', response.data);
+          console.log('Handshake Successful:', response.data);
       } catch(error) {
-          console.log("error updating getTest data: ", error)
+          console.log("failed to get response: ", error)
       }
 }
       // receives data from child fine, receives server response fine ^_^
@@ -71,7 +71,7 @@ export default function App() {
 
   return (
   <div>
-    <Dropdown func={getDropdown}/>
+    <Dropdown func={getDropdown} dataset={testList}/>
     <div className="app">
       <h1>Search</h1>
       <form onSubmit={addItem} className="add-form">
@@ -109,4 +109,9 @@ export default function App() {
     </div>
   </div>
   );
+}
+
+const testList = {
+  "this":"that",
+  "here":"there"
 }

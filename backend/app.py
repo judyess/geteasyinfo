@@ -88,7 +88,6 @@ def update_item(item_id):
     conn.close()
     return jsonify(updated)
 
-#delete_item
 @app.route("/api/gei/<int:item_id>", methods=["DELETE"])
 def delete_by_id(item_id):
     conn = get_db()
