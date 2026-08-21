@@ -3,14 +3,14 @@ import { useEffect, useState } from "react";
 import Dropdown from "./Dropdown"
 import axios from 'axios'
 
-const LEGISCAN_API = import.meta.env.LEGISCAN_API_URL || "";
+LEGISCAN_API = import.meta.env.LEGISCAN_API_URL || "";
 API_KEY = import.meta.env.LEGISCAN_API_KEY || "";
 
 export default function Search(){
     const [dataItems, setDataItems] = useState();
     const [type, setType] = useState()
     const [state, setState] = useState("")
-
+    const [sessionID, setSessionID] = useState("")
 
     useEffect(()=> {
         connect_to_API();
@@ -33,6 +33,7 @@ export default function Search(){
         .then((res)=> {console.log("Server response: ", res.data)})
         .catch((err)=>console.log("error updating getState data: ", err));
 }
+
     async function getSessionList(state) {
     const res = await fetch(`${API_URL}/api/legiscan?op=getSessionList&state=${state}`);
     return res.json();
