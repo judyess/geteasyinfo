@@ -32,7 +32,7 @@ export default function Dropdown(props){
                     <li><option>--</option>
                     </li>
                     <li>
-                    {Object.entries(states).map(([key, value])=> (
+                    {Object.entries(dataset).map(([key, value])=> (
                         <option key={key}>{value}</option>
                     ))}
                     </li>
