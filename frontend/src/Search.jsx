@@ -115,7 +115,7 @@ export default function Search(){
             <form>
             
                 <label>State </label>
-                    <Dropdown func={getState} dataset={states}/>
+                    <Dropdown func={getState} dataset={null}/>
                 <label>Session ID </label>
                     <input> some data </input>
                 <button type="submit">Submit</button>
