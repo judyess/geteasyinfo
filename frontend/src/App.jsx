@@ -7,6 +7,11 @@ import axios from 'axios'
 // (e.g. https://your-backend.onrender.com) and requests go straight there.
 const API_URL = import.meta.env.VITE_API_URL || "";
 
+const testList = {
+  "this":"that",
+  "here":"there"
+}
+
 export default function App() {
   const [dataItems, setDataItems] = useState([]);
   const [text, setText] = useState("");
@@ -110,9 +115,6 @@ export default function App() {
   </div>
   );
 
-  const testList = {
-  "this":"that",
-  "here":"there"
-}
+  
 }
 
