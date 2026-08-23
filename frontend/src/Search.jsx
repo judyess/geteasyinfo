@@ -104,7 +104,7 @@ export default function Search(){
 }
 
     async function submitToServer() {
-        const res = await axios.put(`${API_URL}/api/legiscan/submit`, newIncData)
+        const response = await axios.put(`${API_URL}/api/legiscan/submit`, newIncData)
         .then((res)=> {console.log("Server response: ", res.data)})
         .catch((err)=>console.log("error updating getDropdown data: ", err));
     }
