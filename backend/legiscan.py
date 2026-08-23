@@ -19,15 +19,29 @@ def get_db():
 def init_db():
     conn = get_db()
     conn.close()
+
+@app.route("/api/legiscan", methods=["GET"])
+def legiscan_proxy():
+    op = request.args.get("op")
+    if not op:
+        return jsonify({"error": "op is required"}), 400
+
+    # Forward any other query params the frontend sent (state, id, etc.)
+    # straight through, and add the real key server-side.
+    params = request.args.to_dict()
+    params["key"] = LEGISCAN_API_KEY
+
+    response = requests.get(LEGISCAN_BASE_URL, params=params)
+    return jsonify(response.json()), response.status_code
+    
 # this connects init
-@app.route("/api/legiscan/nothere", methods=["GET"])
+@app.route("/api/legiscan/nothere", methods=["GET"]) # called at module level. what does that mean?
 def api_connect(parameter="none"):
     response = requests.get(LEGISCAN_BASE_URL)
     if response.status_code == 200:
         res = response.json()
         print("status code 200, true")
     return jsonify({"msg": "legi-hi"})
-
 
 @app.route("/api/legiscan/submit", methods=["GET"])
 def get_param(parameter="none"):
@@ -46,19 +60,6 @@ def get_param(parameter="none"):
         print(f"HTTP Request failed with status code: {response.status_code}")
     return jsonify({ "message": f"Legiscan server received: {parameter}" })
 
-@app.route("/api/legiscan", methods=["GET"])
-def legiscan_proxy():
-    op = request.args.get("op")
-    if not op:
-        return jsonify({"error": "op is required"}), 400
-
-    # Forward any other query params the frontend sent (state, id, etc.)
-    # straight through, and add the real key server-side.
-    params = request.args.to_dict()
-    params["key"] = LEGISCAN_API_KEY
-
-    response = requests.get(LEGISCAN_BASE_URL, params=params)
-    return jsonify(response.json()), response.status_code
 
 @app.route("/search/state/<string:incData>", methods=["PUT"])
 def getState(incData):
