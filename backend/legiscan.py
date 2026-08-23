@@ -9,11 +9,10 @@ from psycopg2.extras import RealDictCursor
 
 app = Flask(__name__)
 load_dotenv()
-CORS(app, origins=os.environ.get("DATABASE_URL", "*")) # ME: this is set in Render tool. So if Render runs the app, it will use that URL.
+CORS(app, origins=os.environ.get("FRONTEND_URL", "*"))
 DATABASE_URL = os.environ["DATABASE_URL"] 
 LEGISCAN_API_KEY = os.getenv("LEGISCAN_API_KEY")
 LEGISCAN_BASE_URL= f"https://api.legiscan.com/"
-LEGSICAN_API_URL = f"https://api.legiscan.com/?key={KEY}&op={OP}&state={STATE}"
 
 def get_db():
     return psycopg2.connect(DATABASE_URL, cursor_factory=RealDictCursor)
@@ -21,7 +20,7 @@ def init_db():
     conn = get_db()
     conn.close()
 # this connects init
-@api.route("/api/legiscan/nothere", methods=["GET"])
+@app.route("/api/legiscan/nothere", methods=["GET"])
 def api_connect(parameter="none"):
     response = requests.get(LEGISCAN_BASE_URL)
     if response.status_code == 200:
@@ -30,7 +29,7 @@ def api_connect(parameter="none"):
     return jsonify({"msg": "legi-hi"})
 
 
-@api.route("/api/legiscan/submit", methods=["GET"])
+@app.route("/api/legiscan/submit", methods=["GET"])
 def get_param(parameter="none"):
     response = requests.get(LEGISCAN_BASE_URL)
     if response.status_code == 200:
@@ -47,7 +46,7 @@ def get_param(parameter="none"):
         print(f"HTTP Request failed with status code: {response.status_code}")
     return jsonify({ "message": f"Legiscan server received: {parameter}" })
 
-@api.route("/api/legiscan", methods=["GET"])
+@app.route("/api/legiscan", methods=["GET"])
 def legiscan_proxy():
     op = request.args.get("op")
     if not op:
@@ -61,13 +60,13 @@ def legiscan_proxy():
     response = requests.get(LEGISCAN_BASE_URL, params=params)
     return jsonify(response.json()), response.status_code
 
-@api.route("/search/state/<string:incData>", methods=["PUT"])
+@app.route("/search/state/<string:incData>", methods=["PUT"])
 def getState(incData):
     data = incData
     print(data)
     return jsonify({ "message": f"Legiscan server received: {incData}" })
 
-@api.route("/search/op/<string:incData>", methods=["PUT"])
+@app.route("/search/op/<string:incData>", methods=["PUT"])
 def getOps(incData):
     data = incData
     print(data)
@@ -75,7 +74,7 @@ def getOps(incData):
 
 api_connect()
 if __name__ == "__main__":
-    api.run(debug=True, port=5000)
+    app.run(debug=True, port=5000)
 
 api_ops = [
 "getSessionList",
