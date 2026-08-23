@@ -72,7 +72,7 @@ export default function App() {
   <div>
 
     <div className="app">
-      <h1>Search</h1>
+      <h1>Check List</h1>
       <form onSubmit={addItem} className="add-form">
         <input
           value={text}

@@ -103,12 +103,12 @@ export default function Search(){
         console.log(response);
 }
     return(
-        <div>
-            <div className="app">
+        <div  className="app">
+            <div>
                 <label>Search Type</label>
                 <Dropdown func={getOpsList} dataset={opsList}/>
             </div>
-            <div className="app">
+            <div>
                 <label>State</label>
                 <Dropdown func={getState} dataset={statesList}/>
             </div>
