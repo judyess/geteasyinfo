@@ -30,7 +30,7 @@ def api_connect(parameter="none"):
         print("status code 200, true")
     return jsonify({"operations": {operations}})
 
-
+"""
 @api.route("/api/legiscan/submit", methods=["GET"])
 def get_param(parameter="none"):
     response = requests.get(LEGISCAN_BASE_URL)
@@ -46,8 +46,8 @@ def get_param(parameter="none"):
             print("API Error:", resp.get("message", "Unknown error"))
     else:
         print(f"HTTP Request failed with status code: {response.status_code}")
-    return
-    
+    return jsonify({ "message": f"server received: {parameter}" })
+"""
 @api.route("/api/legiscan", methods=["GET"])
 def legiscan_proxy():
     op = request.args.get("op")
