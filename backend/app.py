@@ -21,7 +21,6 @@ app = Flask(__name__)
 # Left unset, this allows any origin -- fine for local dev, not for prod.
 CORS(app, origins=os.environ.get("FRONTEND_URL", "*")) # ME: this is set in Render tool. So if Render runs the app, it will use that URL.
 DATABASE_URL = os.environ["DATABASE_URL"]  # fails loudly if not set
-print(DATABASE_URL)
 
 def get_db():
     # RealDictCursor makes rows come back as dicts, like sqlite3.Row did
