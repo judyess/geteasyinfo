@@ -112,14 +112,13 @@ export default function Search(){
 
     return(
         <div>
-            <form>
-            
+            <div className="app">
                 <label>State </label>
-                    <Dropdown func={getState} dataset={null}/>
+                <Dropdown func={getState} dataset={null}/>
                 <label>Session ID </label>
                     <input> some data </input>
                 <button type="submit">Submit</button>
-            </form>
+            </div>
         </div>
     )
 
