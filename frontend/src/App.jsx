@@ -72,7 +72,7 @@ export default function App() {
 
   return (
   <div>
-    
+    <Dropdown func={getDropdown} dataset={testList}/>
     <div className="app">
       <h1>Search</h1>
       <form onSubmit={addItem} className="add-form">
