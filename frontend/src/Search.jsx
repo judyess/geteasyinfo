@@ -94,7 +94,7 @@ export default function Search(){
         const response = await axios.put(`${API_URL}/state/${newIncData}`, newIncData)
         .then((res)=> {console.log("Server response: ", res.data)})
         .catch((err)=>console.log("error updating getState data: ", err));
-        setState(res)
+        setState(res.data)
 }
 
     const state_dropdown_handler = (e)=>{
