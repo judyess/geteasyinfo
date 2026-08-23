@@ -7,9 +7,9 @@ from flask_cors import CORS
 import psycopg2 # lets you run SQL queries in postgres
 from psycopg2.extras import RealDictCursor
 
-api = Flask(__name__)
+app = Flask(__name__)
 load_dotenv()
-CORS(api, origins=os.environ.get("DATABASE_URL", "*")) # ME: this is set in Render tool. So if Render runs the app, it will use that URL.
+CORS(app, origins=os.environ.get("DATABASE_URL", "*")) # ME: this is set in Render tool. So if Render runs the app, it will use that URL.
 DATABASE_URL = os.environ["DATABASE_URL"] 
 LEGISCAN_API_KEY = os.getenv("LEGISCAN_API_KEY")
 LEGISCAN_BASE_URL= f"https://api.legiscan.com/"
