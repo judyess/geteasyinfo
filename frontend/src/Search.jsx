@@ -10,7 +10,7 @@ export default function Search(){
     const [sessionID, setSessionID] = useState("")
     const [operation, setOperation] = useState([])
     const [opsList, setOpsList] = useState([])
-
+/*
     useEffect(()=> {
         connect_to_API();
     }, []);
@@ -21,7 +21,8 @@ export default function Search(){
         console.log("connected")
         const data = await res.json();
         setOpsList(data)
-}       
+}      
+        */ 
 
     async function getOperation(newIncData) {
         console.log("REACT getState says: ", newIncData)
@@ -43,6 +44,7 @@ export default function Search(){
         .catch((err)=>console.log("error updating getState data: ", err));
         setState(res)
 }
+/*
     const state_dropdown_handler = (e)=>{
         const user_choice = e.target.value; 
         setState(user_choice);
@@ -54,7 +56,7 @@ export default function Search(){
         .then((res)=> {console.log("Server response: ", res.data)})
         .catch((err)=>console.log("error updating getDropdown data: ", err));
     }
-
+*/
     
 
     return(
