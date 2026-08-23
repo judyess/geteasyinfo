@@ -32,7 +32,7 @@ def legiscan_proxy():
     params["key"] = LEGISCAN_API_KEY
 
     response = requests.get(LEGISCAN_BASE_URL, params=params)
-    return jsonify(response.json()), response.status_code
+    return (jsonify(response.json()), response.status_code)
     
 # this connects init
 @app.route("/api/legiscan/nothere", methods=["GET"]) # called at module level. what does that mean?
