@@ -68,9 +68,10 @@ export default function App() {
     .catch((err)=>console.log("error updating getDropdown data: ", err));
 } 
 
+  testData = {"this":"that", "here":"there"}
   return (
   <div>
-
+    <Dropdown func={getDropdown} dataset={testData}/>
     <div className="app">
       <h1>Check List</h1>
       <form onSubmit={addItem} className="add-form">
