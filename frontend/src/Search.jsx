@@ -35,7 +35,6 @@ export default function Search(){
         setOperation(user_choice);
         console.log("Selected option:", operation);
 }
-    
 
     const getState = async (newIncData)=> {
         console.log("REACT getState says: ", newIncData)

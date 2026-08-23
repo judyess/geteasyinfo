@@ -9,6 +9,7 @@ export default function Menu(){
             <ul>
             <li><NavLink to="/" exact='true'>Home</NavLink></li>
             <li><NavLink to="/about" exact='true'> About </NavLink></li>
+            <li><NavLink to="/search" exact='true'> Search </NavLink></li>
             </ul>
             </div>
         </div>
