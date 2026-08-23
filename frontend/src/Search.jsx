@@ -86,9 +86,10 @@ export default function Search(){
     async function connect_to_API() {
         const res = await fetch(`${API_URL}/api/legiscan`);
         console.log("fetching")
+        console.log(res)
         const data = await res.json();
-
         console.log("connected")
+        console.log(data)
 }      
     const getState = async (newIncData)=> {
         console.log("Search.Callback.getState says: ", newIncData)
