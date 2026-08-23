@@ -5,10 +5,7 @@ export default function Textbox(){
 
     return(
         <div>
-            <input 
-                value={text}
-                onChange={(e) => setText(e.target.value)}
-                placeholder="text"></input>
+            <input> idk</input>
         </div>
     )
 }

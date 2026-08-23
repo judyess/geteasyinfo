@@ -7,10 +7,6 @@ import axios from 'axios'
 // (e.g. https://your-backend.onrender.com) and requests go straight there.
 const API_URL = import.meta.env.VITE_API_URL || "";
 
-const testList = {
-  "this":"that",
-  "here":"there"
-}
 
 export default function App() {
   const [dataItems, setDataItems] = useState([]);
@@ -76,7 +72,7 @@ export default function App() {
 
   return (
   <div>
-    <Dropdown func={getDropdown} dataset={testList}/>
+    
     <div className="app">
       <h1>Search</h1>
       <form onSubmit={addItem} className="add-form">
