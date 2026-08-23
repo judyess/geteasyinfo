@@ -9,14 +9,13 @@ from psycopg2.extras import RealDictCursor
 
 api = Flask(__name__)
 load_dotenv()
-CORS(api, origins=os.environ.get("LEGISCAN_BASE_URL", "*")) # ME: this is set in Render tool. So if Render runs the app, it will use that URL.
+CORS(api, origins=os.environ.get("DATABASE_URL", "*")) # ME: this is set in Render tool. So if Render runs the app, it will use that URL.
 DATABASE_URL = os.environ["DATABASE_URL"] 
 LEGISCAN_API_KEY = os.getenv("LEGISCAN_API_KEY")
 LEGISCAN_BASE_URL= f"https://api.legiscan.com/"
 LEGSICAN_API_URL = f"https://api.legiscan.com/?key={KEY}&op={OP}&state={STATE}"
 
 def get_db():
-    # RealDictCursor makes rows come back as dicts, like sqlite3.Row did
     return psycopg2.connect(DATABASE_URL, cursor_factory=RealDictCursor)
 def init_db():
     conn = get_db()
@@ -28,7 +27,7 @@ def api_connect(parameter="none"):
     if response.status_code == 200:
         res = response.json()
         print("status code 200, true")
-    return jsonify({"operations": {operations}})
+    return jsonify({"msg": "legi-hi"})
 
 
 @api.route("/api/legiscan/submit", methods=["GET"])
