@@ -72,7 +72,7 @@ export default function Search(){
 
     const getState = async (newIncData)=> {
         console.log("Search.Callback.getState says: ", newIncData)
-        const response = await axios.put(`${API_URL}/state/${newIncData}`, newIncData)
+        const response = await axios.put(`${API_URL}/search/state/${newIncData}`, newIncData)
         .then((res)=> {console.log("Server response: ", res.data)})
         .catch((err)=>console.log("error updating getState data: ", err));
         console.log(response);
