@@ -60,6 +60,28 @@ export default function Search(){
   "Wyoming": "WY"
 }
 
+const opsList = {
+  "1": "getSessionList",
+  "2": "getMasterList",
+  "3": "getMasterListRaw",
+  "4": "getBill",
+  "5": "getBillText",
+  "6": "getAmendment",
+  "7": "getSupplement",
+  "8": "getRollCall",
+  "9": "getPerson",
+  "10": "getSearch",
+  "11": "getSearchRaw",
+  "12": "getDatasetList",
+  "13": "getDataset",
+  "14": "getDatasetRaw",
+  "15": "getSessionPeople",
+  "16": "getSponsoredList",
+  "17": "getMonitorList",
+  "18": "getMonitorListRaw",
+  "19": "setMonitor"
+}
+
     useEffect(()=> {
         connect_to_API();
     }, []);
@@ -83,6 +105,10 @@ export default function Search(){
             <div className="app">
                 <label>State </label>
                 <Dropdown func={getState} dataset={statesList}/>
+            </div>
+            <div className="app">
+                <label>State </label>
+                <Dropdown func={getState} dataset={opsList}/>
             </div>
         </div>
     )

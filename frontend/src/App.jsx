@@ -11,7 +11,6 @@ export default function App() {
   const [dataItems, setDataItems] = useState([]);
   const [text, setText] = useState("");
   const [loading, setLoading] = useState(true);
-  const [option, setOption] = useState("")
  
   useEffect(() => {
     fetchServer();
@@ -75,7 +74,6 @@ export default function App() {
     <div className="app">
       <h1>Search</h1>
       <form onSubmit={addItem} className="add-form">
-        <button onClick={fromServer}>Say Hi</button>
         <input
           value={text}
           onChange={(e) => setText(e.target.value)}
