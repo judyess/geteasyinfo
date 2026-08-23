@@ -78,17 +78,17 @@ export default function Dropdown(props){
     return(
         <div>
             <form onSubmit={(e) => send_back_to_caller(e)}>
-            <select value={choice} onChange={dropdown_handler}>
                 <ul>
                     <li><option>--</option>
                     </li>
                     <li>
-                    {Object.entries(states).map(([key, value])=> (
-                        <option key={key}>{value}</option>
-                    ))}
+                        <select value={choice} onChange={dropdown_handler}>
+                        {Object.entries(states).map(([key, value])=> (
+                            <option key={key}>{value}</option>
+                        ))}
+                        </select>
                     </li>
                 </ul>
-                </select>
             <button type="submit">submit</button>
             </form>
         </div>
