@@ -75,7 +75,6 @@ export default function Search(){
         setOpsList(data)
 }      
 
-
     async function getOperation(newIncData) {
         console.log("REACT getState says: ", newIncData)
         const response = await axios.put(`${API_URL}/dropdown/${newIncData}`, newIncData)
@@ -116,7 +115,7 @@ export default function Search(){
                 <label>State </label>
                 <Dropdown func={getState} dataset={null}/>
                 <label>Session ID </label>
-                <button type="submit">Submit</button>
+                <button type="submit" onClick={submitToServer}>Submit</button>
             </div>
         </div>
     )
