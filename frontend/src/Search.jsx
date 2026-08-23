@@ -6,7 +6,27 @@ const API_URL = import.meta.env.VITE_API_URL || "";
 export default function Search(){
     const [dataItems, setDataItems] = useState();
     const [state, setState] = useState("")
-
+    const opsList = {
+  "1": "Session List",
+  "2": "Master List",
+  "3": "Master List Raw",
+  "4": "Bill",
+  "5": "Bill Text",
+  "6": "Amendment",
+  "7": "Supplement",
+  "8": "Roll Call",
+  "9": "Person",
+  "10": "Search",
+  "11": "Search Raw",
+  "12": "Dataset List",
+  "13": "Dataset",
+  "14": "Dataset Raw",
+  "15": "Session People",
+  "16": "Sponsored List",
+  "17": "Monitor List",
+  "18": "Monitor List Raw",
+  "19": "Monitor"
+}
     const statesList = {
   "Alabama": "ALabama",
   "Alaska": "AK",
@@ -59,29 +79,6 @@ export default function Search(){
   "Wisconsin": "WI",
   "Wyoming": "WY"
 }
-
-const opsList = {
-  "1": "getSessionList",
-  "2": "getMasterList",
-  "3": "getMasterListRaw",
-  "4": "getBill",
-  "5": "getBillText",
-  "6": "getAmendment",
-  "7": "getSupplement",
-  "8": "getRollCall",
-  "9": "getPerson",
-  "10": "getSearch",
-  "11": "getSearchRaw",
-  "12": "getDatasetList",
-  "13": "getDataset",
-  "14": "getDatasetRaw",
-  "15": "getSessionPeople",
-  "16": "getSponsoredList",
-  "17": "getMonitorList",
-  "18": "getMonitorListRaw",
-  "19": "setMonitor"
-}
-
     useEffect(()=> {
         connect_to_API();
     }, []);
@@ -91,7 +88,6 @@ const opsList = {
         console.log("connected")
         const data = await res.json();
 }      
-
     const getState = async (newIncData)=> {
         console.log("Search.Callback.getState says: ", newIncData)
         const response = await axios.put(`${API_URL}/search/state/${newIncData}`, newIncData)
@@ -99,43 +95,26 @@ const opsList = {
         .catch((err)=>console.log("error updating getState data: ", err));
         console.log(response);
 }
-
+    const getOpsList = async (newIncData)=> {
+        console.log("Search.Callback.getState says: ", newIncData)
+        const response = await axios.put(`${API_URL}/search/op/${newIncData}`, newIncData)
+        .then((res)=> {console.log("Server response: ", res.data)})
+        .catch((err)=>console.log("error updating getState data: ", err));
+        console.log(response);
+}
     return(
         <div>
             <div className="app">
-                <label>State </label>
-                <Dropdown func={getState} dataset={statesList}/>
+                <label>Search Type</label>
+                <Dropdown func={getOpsList} dataset={opsList}/>
             </div>
             <div className="app">
-                <label>State </label>
-                <Dropdown func={getState} dataset={opsList}/>
+                <label>State</label>
+                <Dropdown func={getState} dataset={statesList}/>
             </div>
+            
         </div>
     )
-
-
-
-const operations = [
-"getSessionList",
-"getMasterList", 
-"getMasterListRaw", 
-"getBill", 
-"getBillText", 
-"getAmendment",
-"getSupplement",
-"getRollCall", 
-"getPerson", 
-"getSearch", 
-"getSearchRaw", 
-"getDatasetList", 
-"getDataset",
-"getDatasetRaw",
-"getSessionPeople", 
-"getSponsoredList",
-"getMonitorList", 
-"getMonitorListRaw",
-"setMonitor", 
-]
 }
 
 /*
