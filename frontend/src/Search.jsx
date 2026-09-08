@@ -107,19 +107,21 @@ export default function Search(){
         console.log("getOps response:", response);
 }
 
-    const submitSearch = async (op, state)=> {
+    const submitSearch = async (e, op, state)=> {
+        e.preventDefault();
         console.log("op: ", op)
         console.log("state: ", state)
-        const responst = await axios.put(`${API_URL}/api/legiscan/search`, 
+        const response = await axios.put(`${API_URL}/api/legiscan/search`, 
             {op: op,
             state: state}
         )
         .then((res) => {console.log("Legiscan Server Response: ", res.data)})
         .catch((err)=> console.log("error searching Legiscan: ", err))
+        console.log(response);
     };
     return(
         <div  className="app">
-            <form onSubmit={submitSearch} >
+            <form onSubmit={(e)=>submitSearch(e, op, state)} >
             <div>
                 <label>Search Type</label>
                 <Dropdown func={getOpsList} dataset={opsList} onChange={(e) => setOp(e.target.value)}/>
