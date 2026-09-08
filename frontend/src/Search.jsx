@@ -112,8 +112,8 @@ export default function Search(){
         console.log("op: ", op)
         console.log("state: ", state)
         const response = await axios.put(`${API_URL}/api/legiscan/search`, 
-            {op: op,
-            state: state}
+            {op: "session",
+            state: "NC"}
         )
         .then((res) => {console.log("Legiscan Server Response: ", res.data)})
         .catch((err)=> console.log("error searching Legiscan: ", err))
