@@ -7,10 +7,13 @@ Requires a running Postgres server and a DATABASE_URL env var, e.g.:
 Run with: python app.py
 Server starts on http://localhost:5000
 """
+import requests
 import os
+from dotenv import load_dotenv
+import re
 from flask import Flask, jsonify, request
 from flask_cors import CORS
-import psycopg2 # lets you run SQL queries in postgres
+import psycopg2 # lets you run SQL queries in postgres. specifically to open postgres
 from psycopg2.extras import RealDictCursor
 
 app = Flask(__name__)
@@ -21,6 +24,8 @@ app = Flask(__name__)
 # Left unset, this allows any origin -- fine for local dev, not for prod.
 CORS(app, origins=os.environ.get("FRONTEND_URL", "*")) # ME: this is set in Render tool. So if Render runs the app, it will use that URL.
 DATABASE_URL = os.environ["DATABASE_URL"]  # fails loudly if not set
+LEGISCAN_API_KEY = os.getenv("LEGISCAN_API_KEY")
+LEGISCAN_API_URL= os.getenv("LEGISCAN_API_URL")
 
 def get_db():
     # RealDictCursor makes rows come back as dicts, like sqlite3.Row did
@@ -110,6 +115,73 @@ def fromClient(incData):
 @app.route("/about")
 def about():
     return
+
+#-----------------------------
+@app.route("/api/legiscan", methods=["GET"])
+def legiscan_proxy():
+    op = request.args.get("op")
+    if not op:
+        return jsonify({"error": "op is required"}), 400
+    # Forward any other query params the frontend sent (state, id, etc.)
+    # straight through, and add the real key server-side.
+    params = request.args.to_dict()
+    params["key"] = LEGISCAN_API_KEY
+    response = requests.get(LEGISCAN_API_URL, params=params)
+    return (jsonify(response.json()), response.status_code)
+    
+"""
+@app.route("/api/legiscan/nothere", methods=["GET"]) # called at module level. what does that mean?
+def api_connect(parameter="none"):
+    response = requests.get(LEGISCAN_API_URL)
+    if response.status_code == 200:
+        res = response.json()
+        print("status code 200, true")
+    return jsonify({"msg": "legi-hi"})
+"""
+@app.route("/api/legiscan/submit", methods=["GET"])
+def get_param(parameter="none"):
+    response = requests.get(LEGISCAN_API_URL)
+    if response.status_code == 200:
+        resp = response.json()
+        print("status code 200, true")
+
+        if resp.get("status") == "OK":
+            data = resp.get(parameter, {})
+            print("resp.get status OK: true")
+            print(f"OUTPUT: {data}")
+        else:
+            print("API Error:", resp.get("message", "Unknown error"))
+    else:
+        print(f"HTTP Request failed with status code: {response.status_code}")
+    return jsonify({ "message": f"Legiscan server received: {parameter}" })
+
+
+@app.route("/search/state/<string:incData>", methods=["PUT"])
+def getState(incData):
+    data = incData
+    print(data)
+    return jsonify({ "message": f"Legiscan server received: {incData}" })
+
+@app.route("/search/op/<string:incData>", methods=["PUT"])
+def getOps(incData):
+    data = incData
+    print(data)
+    return jsonify({ "message": f"Legiscan server received: {incData}" }) 
+
+@app.route("/api/legiscan/search", methods=["POST", "PUT"])
+def legiscan_search():
+    data = request.get_json(force=True)
+    op = data.get("op")
+    state = data.get("state")
+    if not op:
+        return jsonify({"error": "op is required"}), 400
+    params = {"op": op, "key": LEGISCAN_API_KEY}
+    if state:
+        params["state"] = state  # only include if the user provided one
+    response = requests.get(LEGISCAN_API_URL, params=params)
+    return jsonify(response.json()), response.status_code
+
+#-----------------------------
 
 init_db()
 if __name__ == "__main__":
