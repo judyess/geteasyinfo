@@ -5,8 +5,8 @@ const API_URL = import.meta.env.VITE_API_URL || "";
 
 export default function Search(){
     const [dataItems, setDataItems] = useState();
-    const [state, setState] = useState("")
-    const [op, setOp] = useState("")
+    const [state, setState] = useState("NC")
+    const [op, setOp] = useState("SessionList")
     const opsList = {
   "1": "Session List",
   "2": "Master List",
@@ -112,8 +112,8 @@ export default function Search(){
         console.log("op: ", op)
         console.log("state: ", state)
         const response = await axios.put(`${API_URL}/api/legiscan/search`, 
-            {op: "session",
-            state: "NC"}
+            {op: op,
+            state: state}
         )
         .then((res) => {console.log("Legiscan Server Response: ", res.data)})
         .catch((err)=> console.log("error searching Legiscan: ", err))
