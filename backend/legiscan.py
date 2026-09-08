@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 import re
 from flask import Flask, jsonify, request
 from flask_cors import CORS
-import psycopg2 # lets you run SQL queries in postgres
+import psycopg2 # lets you run SQL queries in postgres. specifically to open postgres
 from psycopg2.extras import RealDictCursor
 
 app = Flask(__name__)
@@ -12,7 +12,7 @@ load_dotenv()
 CORS(app, origins=os.environ.get("FRONTEND_URL", "*"))
 DATABASE_URL = os.environ["DATABASE_URL"] 
 LEGISCAN_API_KEY = os.getenv("LEGISCAN_API_KEY")
-LEGISCAN_BASE_URL= f"https://api.legiscan.com/"
+LEGISCAN_API_URL= os.getenv("LEGISCAN_API_URL")
 
 def get_db():
     return psycopg2.connect(DATABASE_URL, cursor_factory=RealDictCursor)
@@ -25,27 +25,25 @@ def legiscan_proxy():
     op = request.args.get("op")
     if not op:
         return jsonify({"error": "op is required"}), 400
-
     # Forward any other query params the frontend sent (state, id, etc.)
     # straight through, and add the real key server-side.
     params = request.args.to_dict()
     params["key"] = LEGISCAN_API_KEY
-
-    response = requests.get(LEGISCAN_BASE_URL, params=params)
+    response = requests.get(LEGISCAN_API_URL, params=params)
     return (jsonify(response.json()), response.status_code)
     
-# this connects init
+"""
 @app.route("/api/legiscan/nothere", methods=["GET"]) # called at module level. what does that mean?
 def api_connect(parameter="none"):
-    response = requests.get(LEGISCAN_BASE_URL)
+    response = requests.get(LEGISCAN_API_URL)
     if response.status_code == 200:
         res = response.json()
         print("status code 200, true")
     return jsonify({"msg": "legi-hi"})
-
+"""
 @app.route("/api/legiscan/submit", methods=["GET"])
 def get_param(parameter="none"):
-    response = requests.get(LEGISCAN_BASE_URL)
+    response = requests.get(LEGISCAN_API_URL)
     if response.status_code == 200:
         resp = response.json()
         print("status code 200, true")
@@ -71,9 +69,22 @@ def getState(incData):
 def getOps(incData):
     data = incData
     print(data)
-    return jsonify({ "message": f"Legiscan server received: {incData}" })
+    return jsonify({ "message": f"Legiscan server received: {incData}" }) 
 
-api_connect()
+@app.route("/api/legiscan/search", methods=["POST"])
+def legiscan_search():
+    data = request.get_json(force=True)
+    op = data.get("op")
+    state = data.get("state")
+    if not op:
+        return jsonify({"error": "op is required"}), 400
+    params = {"op": op, "key": LEGISCAN_API_KEY}
+    if state:
+        params["state"] = state  # only include if the user provided one
+    response = requests.get(LEGISCAN_API_URL, params=params)
+    return jsonify(response.json()), response.status_code
+
+#api_connect() # per Claude
 if __name__ == "__main__":
     app.run(debug=True, port=5000)
 

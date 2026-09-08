@@ -6,6 +6,7 @@ const API_URL = import.meta.env.VITE_API_URL || "";
 export default function Search(){
     const [dataItems, setDataItems] = useState();
     const [state, setState] = useState("")
+    const [op, setOp] = useState("")
     const opsList = {
   "1": "Session List",
   "2": "Master List",
@@ -86,7 +87,7 @@ export default function Search(){
     async function connect_to_API() {
         const res = await fetch(`${API_URL}/api/legiscan`);
         console.log("fetching")
-        console.log(res)
+        console.log("connect_to_api res: ", res)
         const data = await res.json();
         console.log("connected")
         console.log(data)
@@ -105,17 +106,27 @@ export default function Search(){
         .catch((err)=>console.log("error updating getState data: ", err));
         console.log("getOps response:", response);
 }
+
+    const submitSearch = async (op, state)=> {
+        const responst = await axios.put(`${API_URL}/api/legiscan/search`, 
+            {op: op,
+            state: state}
+        )
+        .then((res) => {console.log("Legiscan Server Response: ", res.data)})
+        .catch((err)=> console.log("error searching Legiscan: ", err))
+    };
     return(
         <div  className="app">
+            <form onSubmit={submitSearch} >
             <div>
                 <label>Search Type</label>
-                <Dropdown func={getOpsList} dataset={opsList}/>
+                <Dropdown func={getOpsList} dataset={opsList} onChange={(e) => setOp(e.target.value)}/>
             </div>
             <div>
                 <label>State</label>
-                <Dropdown func={getState} dataset={statesList}/>
+                <Dropdown func={getState} dataset={statesList} onChange={(e) => setState(e.target.value)}/>
             </div>
-            
+            </form>
         </div>
     )
 }
