@@ -108,6 +108,8 @@ export default function Search(){
 }
 
     const submitSearch = async (op, state)=> {
+        console.log("op: ", op)
+        console.log("state: ", state)
         const responst = await axios.put(`${API_URL}/api/legiscan/search`, 
             {op: op,
             state: state}
@@ -126,6 +128,7 @@ export default function Search(){
                 <label>State</label>
                 <Dropdown func={getState} dataset={statesList} onChange={(e) => setState(e.target.value)}/>
             </div>
+            <button type="submit">Query</button>
             </form>
         </div>
     )
