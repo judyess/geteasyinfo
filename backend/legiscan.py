@@ -71,7 +71,7 @@ def getOps(incData):
     print(data)
     return jsonify({ "message": f"Legiscan server received: {incData}" }) 
 
-@app.route("/api/legiscan/search", methods=["POST"])
+@app.route("/api/legiscan/search", methods=["POST", "PUT"])
 def legiscan_search():
     data = request.get_json(force=True)
     op = data.get("op")
