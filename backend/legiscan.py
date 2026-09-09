@@ -19,7 +19,7 @@ def get_db():
 def init_db():
     conn = get_db()
     conn.close()
-
+"""
 @app.route("/api/legiscan", methods=["GET"])
 def legiscan_proxy():
     op = request.args.get("op")
@@ -31,7 +31,7 @@ def legiscan_proxy():
     params["key"] = LEGISCAN_API_KEY
     response = requests.get(LEGISCAN_API_URL, params=params)
     return (jsonify(response.json()), response.status_code)
-    
+    """
 """
 @app.route("/api/legiscan/nothere", methods=["GET"]) # called at module level. what does that mean?
 def api_connect(parameter="none"):

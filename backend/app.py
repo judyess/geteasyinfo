@@ -129,15 +129,7 @@ def legiscan_proxy():
     response = requests.get(LEGISCAN_API_URL, params=params)
     return (jsonify(response.json()), response.status_code)
     
-"""
-@app.route("/api/legiscan/nothere", methods=["GET"]) # called at module level. what does that mean?
-def api_connect(parameter="none"):
-    response = requests.get(LEGISCAN_API_URL)
-    if response.status_code == 200:
-        res = response.json()
-        print("status code 200, true")
-    return jsonify({"msg": "legi-hi"})
-"""
+
 @app.route("/api/legiscan/submit", methods=["GET"])
 def get_param(parameter="none"):
     response = requests.get(LEGISCAN_API_URL)
