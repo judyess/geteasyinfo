@@ -132,6 +132,7 @@ export default function Search(){
             </div>
             <button type="submit">Query</button>
             </form>
+            <div className="app">div2</div>
         </div>
     )
 }
