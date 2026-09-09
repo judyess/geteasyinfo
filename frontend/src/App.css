@@ -17,6 +17,10 @@ body {
   border-radius: 12px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
 }
+
+.output {
+  justify-content: right;
+}
 .main-links li {
     display: inline;
     margin-right: 5%;

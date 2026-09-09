@@ -116,6 +116,7 @@ def about():
     return
 
 #-----------------------------
+"""
 @app.route("/api/legiscan", methods=["GET"])
 def legiscan_proxy():
     op = request.args.get("op")
@@ -127,7 +128,7 @@ def legiscan_proxy():
     params["key"] = LEGISCAN_API_KEY
     response = requests.get(LEGISCAN_API_URL, params=params)
     return (jsonify(response.json()), response.status_code)
-    
+"""    
 
 @app.route("/api/legiscan/submit", methods=["GET"])
 def get_param(parameter="none"):
@@ -146,7 +147,7 @@ def get_param(parameter="none"):
         print(f"HTTP Request failed with status code: {response.status_code}")
     return jsonify({ "message": f"Legiscan server received: {parameter}" })
 
-
+"""
 @app.route("/search/state/<string:incData>", methods=["PUT"])
 def getState(incData):
     data = incData
@@ -158,7 +159,7 @@ def getOps(incData):
     data = incData
     print(data)
     return jsonify({ "message": f"Legiscan server received: {incData}" }) 
-
+"""
 @app.route("/api/legiscan/search", methods=["POST", "PUT"])
 def legiscan_search():
     data = request.get_json(force=True)
