@@ -107,3 +107,36 @@ h1 {
 .empty {
   color: #a8a29e;
 }
+
+/* Outer container */
+.container {
+  width: 100%;
+  max-width: 960px;      /* convenient fixed width, adjust as needed */
+  margin: 0 auto;        /* centers it horizontally on the page */
+  padding: 24px;
+  box-sizing: border-box;
+  background: #f8f8f8;
+  border-radius: 8px;
+}
+
+/* Row that holds the inner divs, aligned side by side */
+.row {
+  display: flex;
+  flex-direction: row;       /* change to column to stack vertically */
+  align-items: center;       /* vertical alignment within the row */
+  justify-content: space-between; /* horizontal spacing between items */
+  gap: 16px;                 /* spacing between inner divs, no manual margins needed */
+  flex-wrap: wrap;           /* lets items wrap to a new line on small screens */
+}
+
+/* Individual inner boxes */
+.box {
+  flex: 1 1 200px;   /* grow, shrink, base width — adjust base width as needed */
+  min-width: 150px;
+  padding: 16px;
+  background: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  box-sizing: border-box;
+  text-align: center;
+}

@@ -134,7 +134,10 @@ export default function Search(){
             <button type="submit">Query</button>
             </form>
         </div>
-        <div className="output">Results</div>
+        <div className="row">
+            <div className="box">Results</div>
+            </div>
+        
         </div>
     )
 }
