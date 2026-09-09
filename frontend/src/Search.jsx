@@ -120,7 +120,7 @@ export default function Search(){
         console.log(response);
     };
     return(
-        <div>
+        <div><div className="row">
         <div  className="app">
             <form onSubmit={(e)=>submitSearch(e, op, state)} >
             <div>
@@ -134,7 +134,7 @@ export default function Search(){
             <button type="submit">Query</button>
             </form>
         </div>
-        <div className="row">
+        
             <div className="box">Results</div>
             </div>
         
