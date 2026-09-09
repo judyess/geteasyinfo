@@ -9,7 +9,7 @@ Server starts on http://localhost:5000
 """
 import requests
 import os
-from dotenv import load_dotenv
+
 import re
 from flask import Flask, jsonify, request
 from flask_cors import CORS
@@ -17,7 +17,6 @@ import psycopg2 # lets you run SQL queries in postgres. specifically to open pos
 from psycopg2.extras import RealDictCursor
 
 app = Flask(__name__)
-
 
 # In production, set FRONTEND_URL to your deployed frontend's origin
 # (e.g. https://your-domain.com) to restrict CORS to just that site.
