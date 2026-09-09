@@ -177,3 +177,49 @@ def legiscan_search():
 init_db()
 if __name__ == "__main__":
     app.run(debug=True, port=5000)
+
+
+
+api_ops = [
+"getSessionList",
+"getMasterList", 
+"getMasterListRaw", 
+"getBill", 
+"getBillText", 
+"getAmendment",
+"getSupplement",
+"getRollCall", 
+"getPerson", 
+"getSearch", 
+"getSearchRaw", 
+"getDatasetList", 
+"getDataset",
+"getDatasetRaw",
+"getSessionPeople", 
+"getSponsoredList",
+"getMonitorList", 
+"getMonitorListRaw",
+"getMonitor", 
+]
+
+opsList = {
+  "1": "getSessionList",
+  "2": "getMasterList",
+  "3": "getMasterListRaw",
+  "4": "getBill",
+  "5": "getBillText",
+  "6": "getAmendment",
+  "7": "getSupplement",
+  "8": "getRollCall",
+  "9": "getPerson",
+  "10": "getSearch",
+  "11": "getSearchRaw",
+  "12": "getDatasetList",
+  "13": "getDataset",
+  "14": "getDatasetRaw",
+  "15": "getSessionPeople",
+  "16": "getSponsoredList",
+  "17": "getMonitorList",
+  "18": "getMonitorListRaw",
+  "19": "setMonitor"
+}

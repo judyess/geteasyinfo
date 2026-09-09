@@ -6,7 +6,7 @@ const API_URL = import.meta.env.VITE_API_URL || "";
 export default function Search(){
     const [dataItems, setDataItems] = useState();
     const [state, setState] = useState("NC")
-    const [op, setOp] = useState("SessionList")
+    const [op, setOp] = useState("getSessionList")
     const opsList = {
   "1": "Session List",
   "2": "Master List",
