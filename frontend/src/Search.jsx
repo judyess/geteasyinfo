@@ -97,6 +97,7 @@ export default function Search(){
         console.log(data)
 }      
     const getState = async (newIncData)=> {
+        console.log("dropdown onchange triggered")
         console.log("Search.Callback.getState says: ", newIncData)
         const response = await axios.put(`${API_URL}/search/state/${newIncData}`, newIncData)
         .then((res)=> {console.log("Server response: ", res.data)})
@@ -104,6 +105,7 @@ export default function Search(){
         console.log("getState response:", response);
 }
     const getOpsList = async (newIncData)=> {
+        console.log("dropdown onchange triggered")
         console.log("Search.Callback.getState says: ", newIncData)
         const response = await axios.put(`${API_URL}/search/op/${newIncData}`, newIncData)
         .then((res)=> {console.log("Server response: ", res.data)})
