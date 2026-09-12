@@ -138,7 +138,7 @@ export default function Search(){
             <div>
                 <label>State</label>
                 <Dropdown func={getState} dataset={statesList}/>
-            </div>
+            </div> 
             <button type="submit">Query</button>
             </form>
         </div>
