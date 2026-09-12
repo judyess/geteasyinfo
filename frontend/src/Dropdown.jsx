@@ -18,11 +18,10 @@ export default function Dropdown(props){
     }
 
     function send_back_to_caller(e){
-        const selectedValue = e.target.value; 
         e.preventDefault();
-        console.log(selectedValue);
-        if (selectedValue != ""){
-            props.func(selectedValue);
+        console.log(choice);
+        if (choice != ""){
+            props.func(choice);
         }
         else{
             console.log("no dropdown data")
@@ -33,7 +32,7 @@ export default function Dropdown(props){
         <div>
             <button onClick={printDataset}>Print Data</button>
             <form onSubmit={(e) => send_back_to_caller(e)}>
-                        <select value="" onChange={(e) => send_back_to_caller(e.target.value)}>
+                        <select value={choice} onChange={dropdown_handler}>
                             <option>--</option>
                         {Object.entries(dataset).map(([key, value])=> (
                             <option key={key} value={key}>{value}</option>
