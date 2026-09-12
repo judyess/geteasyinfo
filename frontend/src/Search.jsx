@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Dropdown from "./Dropdown"
+import Results from "./Results"
 import axios from 'axios'
 const API_URL = import.meta.env.VITE_API_URL || "";
 
@@ -7,7 +8,6 @@ export default function Search(){
     const [params, setParams] = useState({});
     const [state, setState] = useState("NC")
     const [op, setOp] = useState("getSessionList")
-    const [objID, setObjID] = useState("")
     const [results, setResults] = useState()
 
     const opsList = {
@@ -127,10 +127,10 @@ export default function Search(){
             <button type="submit">Query</button>
             </form>
         </div>
-        
-            <div className="box">Results</div>
+            <div className="box">
+                <Results dataset={results}/>
             </div>
-        
+            </div>
         </div>
     )
 }
