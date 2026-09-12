@@ -98,6 +98,7 @@ export default function Search(){
 }      
     const getState = async (newIncData)=> {
         console.log("dropdown onchange triggered")
+        setState(newIncData)
         console.log("Search.Callback.getState says: ", newIncData)
         const response = await axios.put(`${API_URL}/search/state/${newIncData}`, newIncData)
         .then((res)=> {console.log("Server response: ", res.data)})
@@ -106,6 +107,7 @@ export default function Search(){
 }
     const getOpsList = async (newIncData)=> {
         console.log("dropdown onchange triggered")
+        setOp(newIncData)
         console.log("Search.Callback.getState says: ", newIncData)
         const response = await axios.put(`${API_URL}/search/op/${newIncData}`, newIncData)
         .then((res)=> {console.log("Server response: ", res.data)})
@@ -131,11 +133,11 @@ export default function Search(){
             <form onSubmit={(e)=>submitSearch(e, op, state)} >
             <div>
                 <label>Search Type</label>
-                <Dropdown func={getOpsList} dataset={opsList} onChange={(e) => setOp(e.target.value)}/>
+                <Dropdown func={getOpsList} dataset={opsList} />
             </div>
             <div>
                 <label>State</label>
-                <Dropdown func={getState} dataset={statesList} onChange={(e) => setState(e.target.value)}/>
+                <Dropdown func={getState} dataset={statesList}/>
             </div>
             <button type="submit">Query</button>
             </form>
