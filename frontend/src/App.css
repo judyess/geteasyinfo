@@ -153,3 +153,16 @@ h1 {
   max-height: 400px;   /* sets a fixed height so overflow has something to trigger against */
   overflow-y: auto;    /* adds a vertical scrollbar only when content exceeds max-height */
 }
+
+.menu-box {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  z-index: 1000;       /* keeps it above other page content */
+
+  padding: 16px;
+  background: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
