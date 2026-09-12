@@ -18,21 +18,11 @@ export default function Dropdown(props){
         console.log(props.dataset);
     }
 
-    function send_back_to_caller(e){
-        e.preventDefault();
-        console.log(choice);
-        if (choice != ""){
-            props.func(choice);
-        }
-        else{
-            console.log("no dropdown data")
-        }
-    }
 
     return(
         <div>
             <button onClick={printDataset}>Print Data</button>
-                        <select value={choice} onChange={dropdown_handler}>
+                        <select value="" onChange={dropdown_handler}>
                             <option>--</option>
                         {Object.entries(dataset).map(([key, value])=> (
                             <option key={key} value={key}>{value}</option>
