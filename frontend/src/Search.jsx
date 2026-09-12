@@ -84,18 +84,7 @@ export default function Search(){
   "WI": "Wisconsin",
   "WY": "Wyoming"
 }
-    useEffect(()=> {
-        connect_to_API();
-    }, []);
-
-    async function connect_to_API() {
-        const res = await fetch(`${API_URL}/api/legiscan`);
-        console.log("fetching")
-        console.log("connect_to_api res: ", res)
-        const data = await res.json();
-        console.log("connected")
-        console.log(data)
-}      
+   
     const getState = async (newIncData)=> {
         console.log("dropdown onchange triggered")
         console.log(newIncData);

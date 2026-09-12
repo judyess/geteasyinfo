@@ -12,12 +12,10 @@ export default function Dropdown(props){
         console.log("Selected option:", selectedValue);
         props.func(selectedValue);
     }
-
     const printDataset=()=>{
         console.log(dataset.entries);
         console.log(props.dataset);
     }
-
 
     return(
         <div>

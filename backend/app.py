@@ -59,7 +59,6 @@ def create_item():
     text = (data.get("text") or "").strip()
     if not text:
         return jsonify({"error": "text is required"}), 400
-
     conn = get_db()
     cur = conn.cursor()
     # %s placeholders instead of sqlite's ? -- main syntax difference from SQLite
@@ -79,7 +78,6 @@ def update_item(item_id):
     if row is None:
         conn.close()
         return jsonify({"error": "not found"}), 404
-
     done = data.get("done", row["done"])
     text = data.get("text", row["text"])
     cur.execute(
@@ -98,8 +96,6 @@ def delete_by_id(item_id):
     conn.commit()
     conn.close()
     return "", 204
-
-
 
 @app.route("/dropdown/<string:incData>", methods=["PUT"])
 def fromClient(incData):
