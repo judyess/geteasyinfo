@@ -109,22 +109,7 @@ def about():
 
 #-----------------------------
 
-@app.route("/api/legiscan/submit", methods=["GET"])
-def get_param(parameter="none"):
-    response = requests.get(LEGISCAN_API_URL)
-    if response.status_code == 200:
-        resp = response.json()
-        print("status code 200, true")
 
-        if resp.get("status") == "OK":
-            data = resp.get(parameter, {})
-            print("resp.get status OK: true")
-            print(f"OUTPUT: {data}")
-        else:
-            print("API Error:", resp.get("message", "Unknown error"))
-    else:
-        print(f"HTTP Request failed with status code: {response.status_code}")
-    return jsonify({ "message": f"Legiscan server received: {parameter}" })
 
 @app.route("/api/legiscan/search", methods=["POST", "PUT"])
 def legiscan_search():

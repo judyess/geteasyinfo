@@ -31,7 +31,6 @@ export default function Search(){
   "setMonitor": "Monitor"
 }
 
-
     const statesList = {
   "AL": "Alabama",
   "AK": "Alaska",
