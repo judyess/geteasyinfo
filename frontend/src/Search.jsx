@@ -128,7 +128,7 @@ export default function Search(){
             </form>
         </div>
             <div className="box">
-                <Results dataset={results}/>
+                <Results data={results}/>
             </div>
             </div>
         </div>
