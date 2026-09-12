@@ -32,10 +32,10 @@ export default function Dropdown(props){
         <div>
             <button onClick={printDataset}>Print Data</button>
             <form onSubmit={(e) => send_back_to_caller(e)}>
-                        <select value={choice} onChange={dropdown_handler}>
+                        <select value="" onChange={dropdown_handler}>
                             <option>--</option>
                         {Object.entries(dataset).map(([key, value])=> (
-                            <option key={key}>{value}</option>
+                            <option key={key} value={key}>{value}</option>
                         ))}
                         </select>
             <button type="submit">submit</button>
