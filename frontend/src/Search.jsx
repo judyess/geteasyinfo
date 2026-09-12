@@ -115,7 +115,7 @@ export default function Search(){
     return(
         <div>
             <div className="row">
-                <div  className="menu-box">
+                <div  className="app">
                     <form onSubmit={(e)=>submitSearch(e, op, state)} >
                     <div>
                         <label>Search Type</label>
