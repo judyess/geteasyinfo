@@ -4,30 +4,34 @@ import axios from 'axios'
 const API_URL = import.meta.env.VITE_API_URL || "";
 
 export default function Search(){
-    const [dataItems, setDataItems] = useState();
+    const [params, setParams] = useState({});
     const [state, setState] = useState("NC")
     const [op, setOp] = useState("getSessionList")
+    const [objID, setObjID] = useState("")
+
     const opsList = {
-  "1": "Session List",
-  "2": "Master List",
-  "3": "Master List Raw",
-  "4": "Bill",
-  "5": "Bill Text",
-  "6": "Amendment",
-  "7": "Supplement",
-  "8": "Roll Call",
-  "9": "Person",
-  "10": "Search",
-  "11": "Search Raw",
-  "12": "Dataset List",
-  "13": "Dataset",
-  "14": "Dataset Raw",
-  "15": "Session People",
-  "16": "Sponsored List",
-  "17": "Monitor List",
-  "18": "Monitor List Raw",
-  "19": "Monitor"
+  "getSessionList": "Session List",
+  "getMasterList": "Master List",
+  "getMasterListRaw": "Master List Raw",
+  "getBill": "Bill",
+  "getBillText": "Bill Text",
+  "getAmendment": "Amendment",
+  "getSupplement": "Supplement",
+  "getRollCall": "Roll Call",
+  "getPerson": "Person",
+  "getSearch": "Search",
+  "getSearchRaw": "Search Raw",
+  "getDatasetList": "Dataset List",
+  "getDataset": "Dataset",
+  "getDatasetRaw": "Dataset Raw",
+  "getSessionPeople": "Session People",
+  "getSponsoredList": "Sponsored List",
+  "getMonitorList": "Monitor List",
+  "getMonitorListRaw": "Monitor List Raw",
+  "setMonitor": "Monitor"
 }
+
+
     const statesList = {
   "Alabama": "ALabama",
   "Alaska": "AK",

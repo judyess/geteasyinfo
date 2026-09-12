@@ -99,11 +99,7 @@ def delete_by_id(item_id):
     conn.close()
     return "", 204
 
-@app.route("/msg", methods=["GET"])
-def toClient():
-    message = "Hello, Earth"
-    jsonify(message)
-    return jsonify({ "message": f"{message}" })
+
 
 @app.route("/dropdown/<string:incData>", methods=["PUT"])
 def fromClient(incData):
@@ -116,19 +112,6 @@ def about():
     return
 
 #-----------------------------
-"""
-@app.route("/api/legiscan", methods=["GET"])
-def legiscan_proxy():
-    op = request.args.get("op")
-    if not op:
-        return jsonify({"error": "op is required"}), 400
-    # Forward any other query params the frontend sent (state, id, etc.)
-    # straight through, and add the real key server-side.
-    params = request.args.to_dict()
-    params["key"] = LEGISCAN_API_KEY
-    response = requests.get(LEGISCAN_API_URL, params=params)
-    return (jsonify(response.json()), response.status_code)
-"""    
 
 @app.route("/api/legiscan/submit", methods=["GET"])
 def get_param(parameter="none"):
@@ -147,19 +130,6 @@ def get_param(parameter="none"):
         print(f"HTTP Request failed with status code: {response.status_code}")
     return jsonify({ "message": f"Legiscan server received: {parameter}" })
 
-"""
-@app.route("/search/state/<string:incData>", methods=["PUT"])
-def getState(incData):
-    data = incData
-    print(data)
-    return jsonify({ "message": f"Legiscan server received: {incData}" })
-
-@app.route("/search/op/<string:incData>", methods=["PUT"])
-def getOps(incData):
-    data = incData
-    print(data)
-    return jsonify({ "message": f"Legiscan server received: {incData}" }) 
-"""
 @app.route("/api/legiscan/search", methods=["POST", "PUT"])
 def legiscan_search():
     data = request.get_json(force=True)
@@ -172,6 +142,8 @@ def legiscan_search():
         params["state"] = state  # only include if the user provided one
     response = requests.get(LEGISCAN_API_URL, params=params)
     return jsonify(response.json()), response.status_code
+
+
 
 #-----------------------------
 

@@ -52,14 +52,6 @@ export default function App() {
     setDataItems(dataItems.filter((t) => t.id !== id));
 }
 
-  const fromServer = async()=>{
-    try {
-          const response = await axios.get(`${API_URL}/msg`)
-          console.log('Handshake Successful:', response.data);
-      } catch(error) {
-          console.log("failed to get response: ", error)
-      }
-}
       // receives data from child fine, receives server response fine ^_^
   const getDropdown = async(newIncData)=>{
     console.log("REACT getDropdown says: ", newIncData)
