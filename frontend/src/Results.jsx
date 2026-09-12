@@ -28,7 +28,7 @@ export default function Results({ data, loading }){
     : Object.values(payload);
 
   return (
-    <div className="results-list">
+    <div className="box-main ">
       {entries.map((item, i) => (
         <pre key={i}>{JSON.stringify(item, null, 2)}</pre>
       ))}

@@ -141,3 +141,15 @@ h1 {
   box-sizing: border-box;
   text-align: center;
 }
+
+.box-main {
+  flex: 3 1 400px;
+  padding: 16px;
+  background: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  box-sizing: border-box;
+
+  max-height: 400px;   /* sets a fixed height so overflow has something to trigger against */
+  overflow-y: auto;    /* adds a vertical scrollbar only when content exceeds max-height */
+}
