@@ -8,7 +8,7 @@ export default function Dropdown(props){
 
     const dropdown_handler = (e)=>{
         const selectedValue = e.target.value; 
-        //setChoice(selectedValue);
+        setChoice(selectedValue);
         console.log("Selected option:", selectedValue);
         props.func(selectedValue);
     }
@@ -22,7 +22,7 @@ export default function Dropdown(props){
     return(
         <div>
             <button onClick={printDataset}>Print Data</button>
-                        <select value="" onChange={dropdown_handler}>
+                        <select value={choice} onChange={dropdown_handler}>
                             <option>--</option>
                         {Object.entries(dataset).map(([key, value])=> (
                             <option key={key} value={key}>{value}</option>
