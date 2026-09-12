@@ -132,7 +132,7 @@ h1 {
 
 /* Individual inner boxes */
 .box {
-
+  align-items: flex-start;
   flex: 1 1 200px;   /* grow, shrink, base width — adjust base width as needed */
   min-width: 150px;
   padding: 16px;
