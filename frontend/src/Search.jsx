@@ -113,23 +113,24 @@ export default function Search(){
         
     };
     return(
-        <div><div className="row">
-        <div  className="app">
-            <form onSubmit={(e)=>submitSearch(e, op, state)} >
-            <div>
-                <label>Search Type</label>
-                <Dropdown func={getOpsList} dataset={opsList} />
-            </div>
-            <div>
-                <label>State</label>
-                <Dropdown func={getState} dataset={statesList}/>
-            </div> 
-            <button type="submit">Query</button>
-            </form>
-        </div>
-            <div className="box">
-                <Results data={results}/>
-            </div>
+        <div>
+            <div className="row">
+                <div  className="box">
+                    <form onSubmit={(e)=>submitSearch(e, op, state)} >
+                    <div>
+                        <label>Search Type</label>
+                        <Dropdown func={getOpsList} dataset={opsList} />
+                    </div>
+                    <div>
+                        <label>State</label>
+                        <Dropdown func={getState} dataset={statesList}/>
+                    </div> 
+                    <button type="submit">Query</button>
+                    </form>
+                </div>
+                <div className="box">
+                    <Results data={results}/>
+                </div>
             </div>
         </div>
     )
