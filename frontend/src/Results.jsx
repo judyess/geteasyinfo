@@ -1,4 +1,5 @@
 export default function Results({ data, loading }){
+    console.log("Results: ", data);
   if (loading) {
     return <p>Loading results...</p>;
   }
