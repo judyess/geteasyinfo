@@ -18,10 +18,11 @@ export default function Dropdown(props){
     }
 
     function send_back_to_caller(e){
+        const selectedValue = e.target.value; 
         e.preventDefault();
-        console.log(choice);
-        if (choice != ""){
-            props.func(choice);
+        console.log(selectedValue);
+        if (selectedValue != ""){
+            props.func(selectedValue);
         }
         else{
             console.log("no dropdown data")
