@@ -12,14 +12,9 @@ export default function Dropdown(props){
         console.log("Selected option:", selectedValue);
         props.func(selectedValue);
     }
-    const printDataset=()=>{
-        console.log(dataset.entries);
-        console.log(props.dataset);
-    }
 
     return(
         <div>
-            <button onClick={printDataset}>Print Data</button>
                         <select value={choice} onChange={dropdown_handler}>
                             <option>--</option>
                         {Object.entries(dataset).map(([key, value])=> (
