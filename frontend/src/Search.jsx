@@ -8,6 +8,7 @@ export default function Search(){
     const [state, setState] = useState("NC")
     const [op, setOp] = useState("getSessionList")
     const [objID, setObjID] = useState("")
+    const [results, setResults] = useState()
 
     const opsList = {
   "getSessionList": "Session List",
@@ -105,9 +106,11 @@ export default function Search(){
             {op: op,
             state: state}
         )
-        .then((res) => {console.log("Legiscan Server Response: ", res.data)})
-        .catch((err)=> console.log("error searching Legiscan: ", err))
-        console.log(response);
+        .then((res) => {
+            console.log("Legiscan Server Response: ", res.data);
+            setResults(res.data)
+        }).catch((err)=> console.log("error searching Legiscan: ", err))
+        
     };
     return(
         <div><div className="row">
